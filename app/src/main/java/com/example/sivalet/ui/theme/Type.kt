@@ -64,8 +64,8 @@ val Typography = Typography(
     ),
     bodyMedium = TextStyle(
         fontFamily = Roboto,
-        fontWeight = FontWeight.W600,
-        fontSize = 13.sp,
+        fontWeight = FontWeight.W500,
+        fontSize = 13.33.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.sp
     ),

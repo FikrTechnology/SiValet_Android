@@ -17,4 +17,9 @@ object SiValetColor {
     val Secondary = Color(0xFF00C064)
     val Third = Color(0xFFFFBE40)
     val Red = Color(0xFFC00000)
+    val GradientBlue = Color(0xFF00B8FF)
+    val GradientPurple = Color(0xFF3E4096)
+    val SmoothWhite = Color(0xFFF8FAFB)
+    val BorderColor = Color(0xFFEEEEEE)
+    val OldBlue = Color(0xFF085686)
 }
