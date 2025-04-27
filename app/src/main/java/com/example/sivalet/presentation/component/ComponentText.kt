@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.sp
+import com.example.sivalet.ui.theme.Roboto
 import com.example.sivalet.ui.theme.SiValetColor
 
 //////////////////////////////// TEXT Headline Styles //////////////////////////////////
@@ -59,6 +60,44 @@ fun TextBodyLargeWhite600(
         style = MaterialTheme.typography.bodyLarge,
         color = SiValetColor.White,
         fontWeight = FontWeight.W600
+    )
+}
+
+@Composable
+fun TextBodyLargeBlack500(
+    text: String,
+){
+    Text(
+        text = text,
+        style = MaterialTheme.typography.bodyLarge,
+        color = SiValetColor.Black,
+        fontWeight = FontWeight.W500
+    )
+}
+
+@Composable
+fun TextBodySemiLargeBlack500(
+    text: String,
+){
+    Text(
+        text = text,
+        fontFamily = Roboto,
+        fontSize = 14.sp,
+        color = SiValetColor.Black,
+        fontWeight = FontWeight.W500
+    )
+}
+
+@Composable
+fun TextBodySemiLargeWhite500(
+    text: String,
+){
+    Text(
+        text = text,
+        fontFamily = Roboto,
+        fontSize = 14.sp,
+        color = SiValetColor.White,
+        fontWeight = FontWeight.W500
     )
 }
 

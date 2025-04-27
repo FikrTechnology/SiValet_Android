@@ -27,17 +27,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.sivalet.R
 import com.example.sivalet.presentation.component.OutlinedTextFieldLogin
 import com.example.sivalet.presentation.component.TextBodyLargeWhite600
 import com.example.sivalet.presentation.component.TextBodySmallOldBlue500
+import com.example.sivalet.ui.theme.LoginStrings
 import com.example.sivalet.ui.theme.SiValetColor
 
-@Preview(showBackground = true)
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    onClickMasuk : () -> Unit,
+    onClickForgotPass : () -> Unit
+) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -95,23 +97,23 @@ fun LoginScreen() {
                     Spacer(modifier = Modifier.height(34.dp))
 
                     OutlinedTextFieldLogin(
-                        labelName = "Email atau username",
+                        labelName = LoginStrings.LABEL_USERNAME,
                         value = username,
                         onValueChange = { username = it },
-                        placeholder = "Masukkan email atau username",
+                        placeholder = LoginStrings.PLACEHOLDER_USERNAME,
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
 
                     OutlinedTextFieldLogin(
-                        labelName = "Password",
+                        labelName = LoginStrings.LABEL_PASSWORD,
                         value = password,
                         onValueChange = { password = it },
-                        placeholder = "Masukkan password",
+                        placeholder = LoginStrings.PLACEHOLDER_PASSWORD,
                         trailingIcon = {
                             Icon(
                                 painter = painterResource(id = R.drawable.ico_eye_hide),
-                                contentDescription = "Icon Eye Hide"
+                                contentDescription = LoginStrings.CD_PASSWORD
                             )
                         }
                     )
@@ -122,10 +124,10 @@ fun LoginScreen() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(47.dp),
-                        onClick = { /*TODO*/ },
+                        onClick = { onClickMasuk() },
                         colors = ButtonDefaults.buttonColors(SiValetColor.Primary)
                     ) {
-                        TextBodyLargeWhite600(text = "Masuk")
+                        TextBodyLargeWhite600(text = LoginStrings.BUTTON_MASUK)
                     }
 
                     Spacer(modifier = Modifier.height(10.dp))
@@ -135,9 +137,9 @@ fun LoginScreen() {
                         contentAlignment = Alignment.CenterEnd
                     ) {
                         TextButton(
-                            onClick = { /*TODO*/ }
+                            onClick = { onClickForgotPass() }
                         ) {
-                            TextBodySmallOldBlue500(text = "Lupa Password ?")
+                            TextBodySmallOldBlue500(text = LoginStrings.TEXT_BUTTON_FORGOT_PASS)
                         }
                     }
                 }
