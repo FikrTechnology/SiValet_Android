@@ -9,9 +9,9 @@ object NavigationStrings {
 
 object LoginStrings {
     const val LABEL_USERNAME = "Email atau username"
-    const val PLACEHOLDER_USERNAME = "Masukkan email atau username"
+    const val PLACEHOLDER_USERNAME = "Masukan email atau username"
     const val LABEL_PASSWORD = "Password"
-    const val PLACEHOLDER_PASSWORD = "Masukkan password"
+    const val PLACEHOLDER_PASSWORD = "Masukan password"
     const val CD_PASSWORD = "Icon Eye Hide"
     const val BUTTON_MASUK = "Masuk"
     const val TEXT_BUTTON_FORGOT_PASS = "Lupa Password ?"
