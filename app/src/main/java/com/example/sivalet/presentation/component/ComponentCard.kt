@@ -21,11 +21,13 @@ import com.example.sivalet.ui.theme.SiValetColor
 @Composable
 fun CardsHome(
     title: String,
+    height: Int,
     content: @Composable () -> Unit
 ) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .height(height.dp)
             .shadow(4.dp, shape = RoundedCornerShape(10.dp), clip = false)
             .clip(
                 shape = RoundedCornerShape(10.dp)

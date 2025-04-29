@@ -168,6 +168,19 @@ fun TextBodySmallOldBlue500(
     )
 }
 
+@Composable
+fun TextBodySmall12sp500(
+    text: String,
+){
+    Text(
+        text = text,
+        style = MaterialTheme.typography.bodySmall,
+        color = SiValetColor.Black,
+        fontSize = 12.sp,
+        fontWeight = FontWeight.W500
+    )
+}
+
 
 ////////////////////////////////// TEXT Label Style //////////////////////////////////
 @Composable

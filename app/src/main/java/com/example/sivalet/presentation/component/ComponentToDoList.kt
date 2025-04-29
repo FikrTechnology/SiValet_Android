@@ -22,7 +22,7 @@ fun LazyColumnToDoList(){
     LazyColumn(
         modifier = Modifier
             .padding(horizontal = 16.5.dp, vertical = 9.dp),
-        verticalArrangement = Arrangement.spacedBy(9.dp)
+        verticalArrangement = Arrangement.spacedBy(9.dp),
     ) {
         // Add a single item
         item {
@@ -105,6 +105,90 @@ fun LazyColumnToDoList(){
                         .padding(horizontal = 8.dp, vertical = 2.dp)
                 ) {
                     TextBodyMediumBlack500(text = "Pickup")
+                }
+            }
+        }
+
+        item {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(
+                        shape = RoundedCornerShape(4.dp)
+                    )
+                    .background(SiValetColor.SmoothWhite)
+                    .padding(horizontal = 17.dp, vertical = 10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Row {
+                    TextBodyMediumBlack500(text = "AGYA")
+                    Spacer(modifier = Modifier.width(5.dp))
+                    TextBodyMediumBlack500(text = "B55SKU")
+                }
+                Box(
+                    modifier = Modifier
+                        .clip(shape = RoundedCornerShape(2.dp))
+                        .background(SiValetColor.Secondary)
+                        .padding(horizontal = 8.dp, vertical = 2.dp)
+                ) {
+                    TextBodyMediumWhite500(text = "Delivery")
+                }
+            }
+        }
+
+        item {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(
+                        shape = RoundedCornerShape(4.dp)
+                    )
+                    .background(SiValetColor.SmoothWhite)
+                    .padding(horizontal = 17.dp, vertical = 10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Row {
+                    TextBodyMediumBlack500(text = "AGYA")
+                    Spacer(modifier = Modifier.width(5.dp))
+                    TextBodyMediumBlack500(text = "B55SKU")
+                }
+                Box(
+                    modifier = Modifier
+                        .clip(shape = RoundedCornerShape(2.dp))
+                        .background(SiValetColor.Secondary)
+                        .padding(horizontal = 8.dp, vertical = 2.dp)
+                ) {
+                    TextBodyMediumWhite500(text = "Delivery")
+                }
+            }
+        }
+
+        item {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(
+                        shape = RoundedCornerShape(4.dp)
+                    )
+                    .background(SiValetColor.SmoothWhite)
+                    .padding(horizontal = 17.dp, vertical = 10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Row {
+                    TextBodyMediumBlack500(text = "AGYA")
+                    Spacer(modifier = Modifier.width(5.dp))
+                    TextBodyMediumBlack500(text = "B55SKU")
+                }
+                Box(
+                    modifier = Modifier
+                        .clip(shape = RoundedCornerShape(2.dp))
+                        .background(SiValetColor.Secondary)
+                        .padding(horizontal = 8.dp, vertical = 2.dp)
+                ) {
+                    TextBodyMediumWhite500(text = "Delivery")
                 }
             }
         }
