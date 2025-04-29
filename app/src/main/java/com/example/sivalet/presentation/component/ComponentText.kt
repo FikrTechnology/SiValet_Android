@@ -3,6 +3,7 @@ package com.example.sivalet.presentation.component
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -44,6 +45,20 @@ fun TextHeadline3(
         color = SiValetColor.Black,
         fontSize = 18.sp,
         fontWeight = FontWeight.W700,
+    )
+}
+
+
+//////////////////////////////// TEXT Title Style //////////////////////////////////
+@Composable
+fun TextTitleMediumBlack600(
+    text: String,
+){
+    Text(
+        text = text,
+        style = MaterialTheme.typography.titleMedium,
+        color = SiValetColor.Black,
+        fontWeight = FontWeight.W600
     )
 }
 
@@ -103,12 +118,28 @@ fun TextBodySemiLargeWhite500(
 
 @Composable
 fun TextBodyMediumBlack500(
+    modifier: Modifier = Modifier,
     text: String,
 ){
     Text(
+        modifier = modifier,
         text = text,
         style = MaterialTheme.typography.bodyMedium,
         color = SiValetColor.Black,
+        fontWeight = FontWeight.W500
+    )
+}
+
+@Composable
+fun TextBodyMediumWhite500(
+    modifier: Modifier = Modifier,
+    text: String,
+){
+    Text(
+        modifier = modifier,
+        text = text,
+        style = MaterialTheme.typography.bodyMedium,
+        color = SiValetColor.White,
         fontWeight = FontWeight.W500
     )
 }

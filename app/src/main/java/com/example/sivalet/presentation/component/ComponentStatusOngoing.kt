@@ -28,7 +28,8 @@ fun InformationStatusOngoing() {
         contentAlignment = Alignment.CenterStart
     ) {
         Row(
-            modifier = Modifier.padding(horizontal = 18.dp)
+            modifier = Modifier.padding(horizontal = 18.dp),
+            verticalAlignment = Alignment.CenterVertically
         ){
             Image(
                 painter = painterResource(id = R.drawable.ico_ongoing),
