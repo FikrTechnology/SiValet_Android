@@ -4,6 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -11,15 +13,21 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.example.sivalet.R
 import com.example.sivalet.presentation.component.CardsHome
 import com.example.sivalet.presentation.component.InformationStatusOngoing
 import com.example.sivalet.presentation.component.LazyColumnToDoList
 import com.example.sivalet.presentation.component.PieChartSection
+import com.example.sivalet.presentation.component.RoundedBottomBar
 import com.example.sivalet.presentation.component.TextBodyMediumGray400
 import com.example.sivalet.presentation.component.TextTitleMediumBlack600
 import com.example.sivalet.presentation.component.TopBarHomeScreen
@@ -29,6 +37,8 @@ import com.example.sivalet.ui.theme.SiValetColor
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun HomeScreen(){
+    var selectedIndex by remember { mutableStateOf(0) }
+
     Scaffold(
         contentWindowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp),
 
@@ -40,12 +50,23 @@ fun HomeScreen(){
                 nameProfile = "Zainudin",
                 imgTrailing = painterResource(id = R.drawable.ico_notification)
             )
+        },
+
+        bottomBar = {
+            RoundedBottomBar(selectedIndex = selectedIndex) {
+                selectedIndex = it
+            }
         }
     ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
+                .padding(
+                    start = paddingValues.calculateStartPadding(LayoutDirection.Ltr),
+                    top = paddingValues.calculateTopPadding(),
+                    end = paddingValues.calculateEndPadding(LayoutDirection.Ltr),
+                    bottom = 0.dp
+                )
                 .background(SiValetColor.SmoothWhite)
                 .verticalScroll(rememberScrollState())
         ) {
