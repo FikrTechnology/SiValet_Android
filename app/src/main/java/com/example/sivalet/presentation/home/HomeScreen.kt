@@ -1,9 +1,11 @@
 package com.example.sivalet.presentation.home
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -52,27 +54,32 @@ fun HomeScreen(){
             )
         }
     ) { paddingValues ->
-        NavHost(
-            navController = navController,
-            startDestination = Screen.Home.route,
-            modifier = Modifier.padding(
-                start = paddingValues.calculateStartPadding(LayoutDirection.Ltr),
-                top = paddingValues.calculateTopPadding(),
-                end = paddingValues.calculateEndPadding(LayoutDirection.Ltr),
-                bottom = 0.dp
-            )
+        Box(
+            modifier = Modifier
+                .safeDrawingPadding()
         ) {
-            composable(Screen.Home.route) {
-                HomeContent()
-            }
-            composable(Screen.Task.route) {
-                TaskScreen()
-            }
-            composable(Screen.History.route) {
-                HistoryScreen()
-            }
-            composable(Screen.Account.route) {
-                AccountScreen()
+            NavHost(
+                navController = navController,
+                startDestination = Screen.Home.route,
+                modifier = Modifier.padding(
+                    start = paddingValues.calculateStartPadding(LayoutDirection.Ltr),
+                    top = paddingValues.calculateTopPadding(),
+                    end = paddingValues.calculateEndPadding(LayoutDirection.Ltr),
+                    bottom = 0.dp
+                )
+            ) {
+                composable(Screen.Home.route) {
+                    HomeContent()
+                }
+                composable(Screen.Task.route) {
+                    TaskScreen()
+                }
+                composable(Screen.History.route) {
+                    HistoryScreen()
+                }
+                composable(Screen.Account.route) {
+                    AccountScreen()
+                }
             }
         }
     }
