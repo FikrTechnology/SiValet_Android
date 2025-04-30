@@ -71,7 +71,7 @@ fun TopBarHomeScreen(
             if (profile){
                 Row(
                     modifier = Modifier
-                        .background(SiValetColor.SmoothWhite),
+                        .background(SiValetColor.White),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     imgProfile?.let {

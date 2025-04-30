@@ -23,25 +23,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.sivalet.navigation.Screen
 import com.example.sivalet.ui.theme.NavigationStrings
 
 @Composable
 fun RoundedBottomBar(
-    selectedIndex: Int,
-    onItemSelected: (Int) -> Unit
+    items: List<Screen>,
+    currentRoute: String?,
+    onItemSelected: (String) -> Unit
 ) {
-    val items = listOf(NavigationStrings.LABEL_HOME, NavigationStrings.LABEL_TASK, NavigationStrings.LABEL_HISTORY, NavigationStrings.LABEL_ACCOUNT)
-    val icons = listOf(
-        Icons.Filled.Home,
-        Icons.Filled.CheckCircle,
-        Icons.Filled.Menu,
-        Icons.Filled.Person
-    )
-
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -62,22 +57,34 @@ fun RoundedBottomBar(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
-                items.forEachIndexed { index, item ->
+                items.forEach { item ->
+                    val selected = currentRoute == item.route
                     Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier
-                            .clickable { onItemSelected(index) },
-                        horizontalAlignment = Alignment.CenterHorizontally
+                            .clickable { onItemSelected(item.route) }
                     ) {
                         Icon(
-                            imageVector = icons[index],
-                            contentDescription = item,
-                            tint = if (selectedIndex == index) Color.Black else Color.Gray
+                            imageVector = when (item) {
+                                Screen.Home -> Icons.Default.Home
+                                Screen.Task -> Icons.Default.CheckCircle
+                                Screen.History -> Icons.Default.Menu
+                                Screen.Account -> Icons.Default.Person
+                                else -> Icons.Default.Home
+                            },
+                            contentDescription = item.route,
+                            tint = if (selected) Color.Black else Color.Gray
                         )
                         Text(
-                            text = item,
+                            text = when (item) {
+                                Screen.Home -> NavigationStrings.LABEL_HOME
+                                Screen.Task -> NavigationStrings.LABEL_TASK
+                                Screen.History -> NavigationStrings.LABEL_HISTORY
+                                Screen.Account -> NavigationStrings.LABEL_ACCOUNT
+                                else -> ""
+                            },
                             fontSize = 12.sp,
-                            fontWeight = if (selectedIndex == index) FontWeight.Bold else FontWeight.Normal,
-                            color = if (selectedIndex == index) Color.Black else Color.Gray
+                            color = if (selected) Color.Black else Color.Gray
                         )
                     }
                 }
