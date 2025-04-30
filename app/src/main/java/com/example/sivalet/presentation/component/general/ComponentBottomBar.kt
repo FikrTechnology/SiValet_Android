@@ -1,4 +1,4 @@
-package com.example.sivalet.presentation.component
+package com.example.sivalet.presentation.component.general
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,13 +27,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.sivalet.ui.theme.NavigationStrings
 
 @Composable
 fun RoundedBottomBar(
     selectedIndex: Int,
     onItemSelected: (Int) -> Unit
 ) {
-    val items = listOf("Beranda", "Tugas", "Riwayat", "Akun")
+    val items = listOf(NavigationStrings.LABEL_HOME, NavigationStrings.LABEL_TASK, NavigationStrings.LABEL_HISTORY, NavigationStrings.LABEL_ACCOUNT)
     val icons = listOf(
         Icons.Filled.Home,
         Icons.Filled.CheckCircle,
@@ -49,7 +50,7 @@ fun RoundedBottomBar(
         contentAlignment = Alignment.Center
     ) {
         Card(
-            elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+            elevation = CardDefaults.cardElevation(4.dp),
             shape = RoundedCornerShape(50),
             colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.95f)),
             modifier = Modifier

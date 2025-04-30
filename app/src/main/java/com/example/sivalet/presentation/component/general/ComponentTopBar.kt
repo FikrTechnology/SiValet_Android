@@ -1,4 +1,4 @@
-package com.example.sivalet.presentation.component
+package com.example.sivalet.presentation.component.general
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

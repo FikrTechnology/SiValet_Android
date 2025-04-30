@@ -1,9 +1,8 @@
-package com.example.sivalet.presentation.component
+package com.example.sivalet.presentation.component.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -15,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
-import com.example.sivalet.ui.theme.HomeStrings
+import com.example.sivalet.presentation.component.general.TextBodyMediumBlack500
 import com.example.sivalet.ui.theme.SiValetColor
 
 @Composable

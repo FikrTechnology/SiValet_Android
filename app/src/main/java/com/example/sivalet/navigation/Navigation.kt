@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.sivalet.presentation.history.HistoryScreen
 import com.example.sivalet.presentation.home.HomeScreen
 import com.example.sivalet.presentation.login.LoginScreen
 
@@ -24,5 +25,12 @@ fun SetupNavigation() {
         composable(route = Screen.Home.route) {
             HomeScreen()
         }
+        composable(route = Screen.Task.route) {}
+        composable(route = Screen.ConfirmTask.route) {}
+        composable(route = Screen.History.route) {
+            HistoryScreen()
+        }
+        composable(route = Screen.Account.route) {}
+        composable(route = Screen.ForgotPassword.route) {}
     }
 }

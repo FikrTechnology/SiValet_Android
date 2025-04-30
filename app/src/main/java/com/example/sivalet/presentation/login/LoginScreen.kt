@@ -35,9 +35,9 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.sivalet.R
-import com.example.sivalet.presentation.component.OutlinedTextFieldLogin
-import com.example.sivalet.presentation.component.TextBodyLargeWhite600
-import com.example.sivalet.presentation.component.TextBodySmallOldBlue500
+import com.example.sivalet.presentation.component.login.OutlinedTextFieldLogin
+import com.example.sivalet.presentation.component.general.TextBodyLargeWhite600
+import com.example.sivalet.presentation.component.general.TextBodySmallOldBlue500
 import com.example.sivalet.ui.theme.LoginStrings
 import com.example.sivalet.ui.theme.SiValetColor
 
@@ -63,8 +63,8 @@ fun LoginScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(395.dp)
-                    .clip(RoundedCornerShape(bottomStart = 59.dp, bottomEnd = 59.dp)) // clip dulu
-                    .background( // background mengikuti clip
+                    .clip(RoundedCornerShape(bottomStart = 59.dp, bottomEnd = 59.dp))
+                    .background(
                         brush = Brush.verticalGradient(
                             colors = listOf(
                                 SiValetColor.GradientBlue,
@@ -119,11 +119,6 @@ fun LoginScreen(
                         onValueChange = { password = it },
                         placeholder = LoginStrings.PLACEHOLDER_PASSWORD,
                         trailingIcon = {
-//                            Icon(
-//                                painter = painterResource(id = R.drawable.ico_eye_hide),
-//                                contentDescription = LoginStrings.CD_PASSWORD
-//                            )
-
                             val image = if (passwordVisible)
                                 painterResource(id = R.drawable.ico_eye_hide)
                             else

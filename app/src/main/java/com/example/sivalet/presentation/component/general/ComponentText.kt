@@ -1,4 +1,4 @@
-package com.example.sivalet.presentation.component
+package com.example.sivalet.presentation.component.general
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text

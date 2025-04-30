@@ -1,4 +1,4 @@
-package com.example.sivalet.presentation.component
+package com.example.sivalet.presentation.component.login
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,6 +14,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import com.example.sivalet.presentation.component.general.TextBodyMediumBlack500
+import com.example.sivalet.presentation.component.general.TextBodyMediumGray400
 import com.example.sivalet.ui.theme.Roboto
 import com.example.sivalet.ui.theme.SiValetColor
 

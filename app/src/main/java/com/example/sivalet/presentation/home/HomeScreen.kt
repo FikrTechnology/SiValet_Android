@@ -14,7 +14,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -23,21 +23,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.example.sivalet.R
-import com.example.sivalet.presentation.component.CardsHome
-import com.example.sivalet.presentation.component.InformationStatusOngoing
-import com.example.sivalet.presentation.component.LazyColumnToDoList
-import com.example.sivalet.presentation.component.PieChartSection
-import com.example.sivalet.presentation.component.RoundedBottomBar
-import com.example.sivalet.presentation.component.TextBodyMediumGray400
-import com.example.sivalet.presentation.component.TextTitleMediumBlack600
-import com.example.sivalet.presentation.component.TopBarHomeScreen
+import com.example.sivalet.presentation.component.home.CardsHome
+import com.example.sivalet.presentation.component.general.InformationStatusOngoing
+import com.example.sivalet.presentation.component.home.LazyColumnToDoList
+import com.example.sivalet.presentation.component.home.PieChartSection
+import com.example.sivalet.presentation.component.general.RoundedBottomBar
+import com.example.sivalet.presentation.component.general.TextBodyMediumGray400
+import com.example.sivalet.presentation.component.general.TextTitleMediumBlack600
+import com.example.sivalet.presentation.component.general.TopBarHomeScreen
 import com.example.sivalet.ui.theme.HomeStrings
 import com.example.sivalet.ui.theme.SiValetColor
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun HomeScreen(){
-    var selectedIndex by remember { mutableStateOf(0) }
+    var selectedIndex by remember { mutableIntStateOf(0) }
 
     Scaffold(
         contentWindowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp),

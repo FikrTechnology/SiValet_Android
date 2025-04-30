@@ -1,4 +1,4 @@
-package com.example.sivalet.presentation.component
+package com.example.sivalet.presentation.component.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -15,6 +15,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import com.example.sivalet.presentation.component.general.TextBodyMediumBlack500
+import com.example.sivalet.presentation.component.general.TextBodyMediumWhite500
 import com.example.sivalet.ui.theme.SiValetColor
 
 @Composable
