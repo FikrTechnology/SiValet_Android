@@ -29,7 +29,9 @@ import com.example.sivalet.ui.theme.HomeStrings
 import com.example.sivalet.ui.theme.SiValetColor
 
 @Composable
-fun HomeContent() {
+fun HomeContent(
+    onClickToDoList : () -> Unit
+) {
     Scaffold(
         contentWindowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp),
         containerColor = SiValetColor.White,
@@ -71,7 +73,9 @@ fun HomeContent() {
                     title = HomeStrings.LABEL_TO_DO_LIST,
                     height = 213
                 ) {
-                    LazyColumnToDoList()
+                    LazyColumnToDoList(
+                        onClickToDoList = onClickToDoList
+                    )
                 }
 
                 Spacer(modifier = Modifier.height(15.dp))

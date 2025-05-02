@@ -1,6 +1,5 @@
 package com.example.sivalet.presentation.home
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
@@ -38,6 +37,7 @@ fun HomeScreen(){
     val currentRoute = currentBackStack?.destination?.route
 
     Scaffold(
+        modifier = Modifier.safeDrawingPadding(),
         containerColor = Color.Transparent,
         contentWindowInsets = WindowInsets(0),
         bottomBar = {
@@ -46,40 +46,44 @@ fun HomeScreen(){
                 currentRoute = currentRoute,
                 onItemSelected = { route ->
                     navController.navigate(route) {
-                        popUpTo(Screen.Home.route) { saveState = true }
-                        launchSingleTop = true
-                        restoreState = true
+                        if (route != Screen.Home.route){
+                            popUpTo(Screen.Home.route) { saveState = true }
+                            launchSingleTop = true
+                            restoreState = true
+                        } else {
+                            popUpTo(0)
+                            launchSingleTop = true
+                        }
                     }
                 }
             )
         }
     ) { paddingValues ->
-        Box(
-            modifier = Modifier
-                .safeDrawingPadding()
+        NavHost(
+            navController = navController,
+            startDestination = Screen.Home.route,
+            modifier = Modifier.padding(
+                start = paddingValues.calculateStartPadding(LayoutDirection.Ltr),
+                top = paddingValues.calculateTopPadding(),
+                end = paddingValues.calculateEndPadding(LayoutDirection.Ltr),
+                bottom = 0.dp
+            )
         ) {
-            NavHost(
-                navController = navController,
-                startDestination = Screen.Home.route,
-                modifier = Modifier.padding(
-                    start = paddingValues.calculateStartPadding(LayoutDirection.Ltr),
-                    top = paddingValues.calculateTopPadding(),
-                    end = paddingValues.calculateEndPadding(LayoutDirection.Ltr),
-                    bottom = 0.dp
+            composable(Screen.Home.route) {
+                HomeContent(
+                    onClickToDoList = {
+                        navController.navigate(Screen.Task.route)
+                    }
                 )
-            ) {
-                composable(Screen.Home.route) {
-                    HomeContent()
-                }
-                composable(Screen.Task.route) {
-                    TaskScreen()
-                }
-                composable(Screen.History.route) {
-                    HistoryScreen()
-                }
-                composable(Screen.Account.route) {
-                    AccountScreen()
-                }
+            }
+            composable(Screen.Task.route) {
+                TaskScreen()
+            }
+            composable(Screen.History.route) {
+                HistoryScreen()
+            }
+            composable(Screen.Account.route) {
+                AccountScreen()
             }
         }
     }

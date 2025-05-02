@@ -22,4 +22,5 @@ object SiValetColor {
     val SmoothWhite = Color(0xFFF8FAFB)
     val BorderColor = Color(0xFFEEEEEE)
     val OldBlue = Color(0xFF085686)
+    val Purple = Color(0xFF9747FF)
 }

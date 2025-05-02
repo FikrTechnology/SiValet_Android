@@ -117,6 +117,19 @@ fun TextBodySemiLargeWhite500(
 }
 
 @Composable
+fun TextBodySemiLargeGray400(
+    text: String,
+){
+    Text(
+        text = text,
+        fontFamily = Roboto,
+        fontSize = 14.sp,
+        color = SiValetColor.Black.copy(alpha = 0.7f),
+        fontWeight = FontWeight.W400
+    )
+}
+
+@Composable
 fun TextBodyMediumBlack500(
     modifier: Modifier = Modifier,
     text: String,
