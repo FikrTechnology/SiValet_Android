@@ -16,12 +16,13 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import com.example.sivalet.ui.theme.SiValetColor
 
 @Composable
-fun TopBarHomeScreen(
+fun ComponentTopBar(
     onlyLogo: Boolean = false,
     leading: Boolean = false,
     title: Boolean = false,
@@ -33,7 +34,9 @@ fun TopBarHomeScreen(
     onClickTrailing: () -> Unit = {},
     imgLeading: Painter? = null,
     textTitle: String? = null,
-    imgTrailing: Painter? = null
+    imgTrailing: Painter? = null,
+    borderBottom: Boolean = false,
+    backgroundColor: Color = SiValetColor.White
 ) {
     Box(
         modifier = Modifier
@@ -42,11 +45,12 @@ fun TopBarHomeScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 10.dp, horizontal = 18.dp),
+                .padding(vertical = 10.dp, horizontal = 18.dp)
+                .background(backgroundColor),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            if (onlyLogo){
+            if (onlyLogo) {
                 imgLeading?.let {
                     Image(
                         painter = it,
@@ -56,7 +60,7 @@ fun TopBarHomeScreen(
                 }
             }
 
-            if (leading){
+            if (leading) {
                 imgLeading?.let {
                     Image(
                         painter = it,
@@ -68,7 +72,7 @@ fun TopBarHomeScreen(
                 }
             }
 
-            if (profile){
+            if (profile) {
                 Row(
                     modifier = Modifier
                         .background(SiValetColor.White),
@@ -86,11 +90,11 @@ fun TopBarHomeScreen(
                 }
             }
 
-            if (title){
+            if (title) {
                 textTitle?.let { TextBodyLargeBlack500(text = it) }
             }
 
-            if (trailing){
+            if (trailing) {
                 imgTrailing?.let {
                     Image(
                         painter = it,
@@ -102,10 +106,12 @@ fun TopBarHomeScreen(
                 }
             }
         }
-        HorizontalDivider(
-            modifier = Modifier.align(Alignment.BottomCenter),
-            thickness = 1.dp,
-            color = SiValetColor.Black.copy(alpha = 0.05f)
-        )
+        if (borderBottom) {
+            HorizontalDivider(
+                modifier = Modifier.align(Alignment.BottomCenter),
+                thickness = 1.dp,
+                color = SiValetColor.Black.copy(alpha = 0.05f)
+            )
+        }
     }
 }

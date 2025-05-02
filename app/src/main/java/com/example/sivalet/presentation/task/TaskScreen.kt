@@ -25,6 +25,7 @@ import com.example.sivalet.presentation.component.general.InformationStatusOngoi
 import com.example.sivalet.presentation.component.general.TextBodyLargeWhite600
 import com.example.sivalet.presentation.component.task.HeaderWithDropdown
 import com.example.sivalet.ui.theme.SiValetColor
+import com.example.sivalet.ui.theme.TaskStrings
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
@@ -32,7 +33,9 @@ import com.google.maps.android.compose.rememberCameraPositionState
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun TaskScreen(){
+fun TaskScreen(
+    onClickConfirm: () -> Unit = {}
+){
     val akastra = LatLng(-6.2103535,106.7833774)
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(akastra, 15f)
@@ -45,8 +48,7 @@ fun TaskScreen(){
             statusOnGoing = false
             println("Clock Out")
         } else {
-            statusOnGoing = true
-            println("Clock In")
+            onClickConfirm()
         }
     }
 
@@ -57,8 +59,8 @@ fun TaskScreen(){
             ExtendedFloatingActionButton(
                 modifier = Modifier.padding(bottom = 70.dp),
                 text = {
-                    if (statusOnGoing) TextBodyLargeWhite600(text = "Clock Out")
-                    else TextBodyLargeWhite600(text = "Clock In")
+                    if (statusOnGoing) TextBodyLargeWhite600(text = TaskStrings.LABEL_CLOCK_OUT)
+                    else TextBodyLargeWhite600(text = TaskStrings.LABEL_CLOCK_IN)
                 },
                 icon = {
                     Icon(

@@ -27,3 +27,22 @@ object HomeStrings {
     const val LABEL_DELIVERY = "Delivery"
     const val LABEL_LAST_30_DAYS = "30 hari terakhir"
 }
+
+object TaskStrings {
+    const val LABLE_PICKUP = "Pickup"
+    const val LABEL_DELIVERY = "Delivery"
+    const val LABEL_CURRENT_LOC = "Current Location"
+    const val LABEL_CLOCK_IN = "Clock In"
+    const val LABEL_CLOCK_OUT = "Clock Out"
+}
+
+object ConfirmTaskStrings {
+    const val HEADLINE = "Konfirmasi Clock in"
+    const val LABEL_OS = "via Android OS"
+    const val TITLE_TASK = "Informasi Tugas"
+    const val TITLE_LOC_FROM = "lokasi"
+    const val TITLE_LOC_TO = "Tujuan"
+    const val TITLE_USER = "User"
+    const val TITLE_CUSTOMER = "Customer"
+    const val LABEL_BUTTON_CLOCKIN = "Konfirmasi Clock In"
+}

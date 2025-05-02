@@ -18,10 +18,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.example.sivalet.R
+import com.example.sivalet.presentation.component.general.ComponentTopBar
 import com.example.sivalet.presentation.component.general.InformationStatusOngoing
 import com.example.sivalet.presentation.component.general.TextBodyMediumGray400
 import com.example.sivalet.presentation.component.general.TextTitleMediumBlack600
-import com.example.sivalet.presentation.component.general.TopBarHomeScreen
 import com.example.sivalet.presentation.component.home.CardsHome
 import com.example.sivalet.presentation.component.home.LazyColumnToDoList
 import com.example.sivalet.presentation.component.home.PieChartSection
@@ -37,12 +37,13 @@ fun HomeContent(
         containerColor = SiValetColor.White,
 
         topBar = {
-            TopBarHomeScreen(
+            ComponentTopBar(
                 profile = true,
                 trailing = true,
                 imgProfile = painterResource(id = R.drawable.img_profile),
                 nameProfile = "Zainudin",
-                imgTrailing = painterResource(id = R.drawable.ico_notification)
+                imgTrailing = painterResource(id = R.drawable.ico_notification),
+                borderBottom = true
             )
         }
     ) {paddingValues ->

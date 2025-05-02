@@ -35,6 +35,7 @@ import com.example.sivalet.presentation.component.general.TextBodyLargeBlack500
 import com.example.sivalet.presentation.component.general.TextBodyMediumBlack500
 import com.example.sivalet.presentation.component.general.TextBodySemiLargeGray400
 import com.example.sivalet.ui.theme.SiValetColor
+import com.example.sivalet.ui.theme.TaskStrings
 
 @Composable
 fun HeaderWithDropdown(
@@ -71,7 +72,7 @@ fun HeaderWithDropdown(
                 TextBodyMediumBlack500(text = "B55SKU")
                 Spacer(modifier = Modifier.width(10.dp))
                 CardTag(
-                    text = "Pickup",
+                    text = TaskStrings.LABEL_DELIVERY,
                     backgroundColor = SiValetColor.Purple,
                     textColorBlack = false
                 )
@@ -109,7 +110,7 @@ fun HeaderWithDropdown(
                     contentDescription = "Location Icon",
                 )
                 Spacer(modifier = Modifier.width(8.dp))
-                TextBodyLargeBlack500(text = "Current Location")
+                TextBodyLargeBlack500(text = TaskStrings.LABEL_CURRENT_LOC)
             }
 
             Spacer(modifier = Modifier.height(4.dp))

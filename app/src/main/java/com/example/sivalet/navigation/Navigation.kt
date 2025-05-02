@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.sivalet.presentation.home.HomeScreen
 import com.example.sivalet.presentation.login.LoginScreen
+import com.example.sivalet.presentation.task.ConfirmationTaskScreen
 
 @Composable
 fun SetupNavigation() {
@@ -26,9 +27,22 @@ fun SetupNavigation() {
             )
         }
         composable(route = Screen.Home.route) {
-            HomeScreen()
+            HomeScreen(
+                onClickConfirm = {
+                    navController.navigate(Screen.ConfirmTask.route)
+                }
+            )
         }
-        composable(route = Screen.ConfirmTask.route) {}
         composable(route = Screen.ForgotPassword.route) {}
+        composable(Screen.ConfirmTask.route) {
+            ConfirmationTaskScreen(
+                onClickClockIn = {
+                    navController.navigate(Screen.Task.route)
+                },
+                onCliCkBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
     }
 }

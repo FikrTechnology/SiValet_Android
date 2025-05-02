@@ -21,11 +21,14 @@ import androidx.navigation.compose.composable
 import com.example.sivalet.presentation.account.AccountScreen
 import com.example.sivalet.presentation.component.general.RoundedBottomBar
 import com.example.sivalet.presentation.history.HistoryScreen
+import com.example.sivalet.presentation.task.ConfirmationTaskScreen
 import com.example.sivalet.presentation.task.TaskScreen
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun HomeScreen(){
+fun HomeScreen(
+    onClickConfirm: () -> Unit = {},
+){
     val items = listOf(
         Screen.Home,
         Screen.Task,
@@ -77,7 +80,11 @@ fun HomeScreen(){
                 )
             }
             composable(Screen.Task.route) {
-                TaskScreen()
+                TaskScreen(
+                    onClickConfirm = {
+                        onClickConfirm()
+                    }
+                )
             }
             composable(Screen.History.route) {
                 HistoryScreen()

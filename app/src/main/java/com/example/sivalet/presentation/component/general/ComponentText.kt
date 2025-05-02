@@ -182,6 +182,18 @@ fun TextBodySmallOldBlue500(
 }
 
 @Composable
+fun TextBodySmallGray400(
+    text: String,
+){
+    Text(
+        text = text,
+        style = MaterialTheme.typography.bodySmall,
+        color = SiValetColor.Black.copy(alpha = 0.7f),
+        fontWeight = FontWeight.W400
+    )
+}
+
+@Composable
 fun TextBodySmall12sp500(
     text: String,
 ){
