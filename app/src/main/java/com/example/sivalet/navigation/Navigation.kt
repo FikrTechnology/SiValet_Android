@@ -37,7 +37,7 @@ fun SetupNavigation() {
         composable(Screen.ConfirmTask.route) {
             ConfirmationTaskScreen(
                 onClickClockIn = {
-                    navController.navigate(Screen.Task.route)
+                    navController.popBackStack()
                 },
                 onCliCkBack = {
                     navController.popBackStack()

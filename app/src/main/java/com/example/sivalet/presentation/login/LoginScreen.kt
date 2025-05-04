@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -35,8 +34,8 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.sivalet.R
+import com.example.sivalet.presentation.component.general.ComponentButton
 import com.example.sivalet.presentation.component.login.OutlinedTextFieldLogin
-import com.example.sivalet.presentation.component.general.TextBodyLargeWhite600
 import com.example.sivalet.presentation.component.general.TextBodySmallOldBlue500
 import com.example.sivalet.ui.theme.LoginStrings
 import com.example.sivalet.ui.theme.SiValetColor
@@ -137,15 +136,11 @@ fun LoginScreen(
 
                     Spacer(modifier = Modifier.height(25.dp))
 
-                    Button(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(47.dp),
+                    ComponentButton(
                         onClick = { onClickMasuk() },
-                        colors = ButtonDefaults.buttonColors(SiValetColor.Primary)
-                    ) {
-                        TextBodyLargeWhite600(text = LoginStrings.BUTTON_MASUK)
-                    }
+                        colors = ButtonDefaults.buttonColors(SiValetColor.Primary),
+                        labelButton = LoginStrings.BUTTON_MASUK
+                    )
 
                     Spacer(modifier = Modifier.height(10.dp))
 
