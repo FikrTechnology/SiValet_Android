@@ -22,6 +22,7 @@ fun ComponentButton(
     onClick: () -> Unit = {},
     colors: ButtonColors = ButtonDefaults.buttonColors(),
     isWithIcon: Boolean = false,
+    isTextColorWhite: Boolean = true,
     painter: Painter? = null,
     tint: Color = LocalContentColor.current,
     labelButton: String = "Button"
@@ -43,6 +44,11 @@ fun ComponentButton(
             }
             Spacer(modifier = Modifier.width(10.dp))
         }
-        TextBodyLargeWhite600(text = labelButton)
+
+        if (isTextColorWhite) {
+            TextBodyLargeWhite600(text = labelButton)
+        } else {
+            TextBodyLargePrimary600(text = labelButton)
+        }
     }
 }

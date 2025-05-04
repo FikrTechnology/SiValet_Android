@@ -79,6 +79,18 @@ fun TextBodyLargeWhite600(
 }
 
 @Composable
+fun TextBodyLargePrimary600(
+    text: String,
+){
+    Text(
+        text = text,
+        style = MaterialTheme.typography.bodyLarge,
+        color = SiValetColor.Primary,
+        fontWeight = FontWeight.W600
+    )
+}
+
+@Composable
 fun TextBodyLargeBlack500(
     text: String,
 ){
@@ -160,12 +172,13 @@ fun TextBodyMediumWhite500(
 @Composable
 fun TextBodyMediumGray400(
     text: String,
+    fontWeight: FontWeight? = FontWeight.W400
 ){
     Text(
         text = text,
         style = MaterialTheme.typography.bodyMedium,
         color = SiValetColor.Black.copy(alpha = 0.55f),
-        fontWeight = FontWeight.W400
+        fontWeight = fontWeight
     )
 }
 

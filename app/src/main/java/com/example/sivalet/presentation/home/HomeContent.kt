@@ -15,6 +15,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.example.sivalet.R
@@ -22,7 +23,7 @@ import com.example.sivalet.presentation.component.general.ComponentTopBar
 import com.example.sivalet.presentation.component.general.InformationStatusOngoing
 import com.example.sivalet.presentation.component.general.TextBodyMediumGray400
 import com.example.sivalet.presentation.component.general.TextTitleMediumBlack600
-import com.example.sivalet.presentation.component.home.CardsHome
+import com.example.sivalet.presentation.component.general.ComponentCard
 import com.example.sivalet.presentation.component.home.LazyColumnToDoList
 import com.example.sivalet.presentation.component.home.PieChartSection
 import com.example.sivalet.ui.theme.HomeStrings
@@ -70,7 +71,7 @@ fun HomeContent(
                 TextBodyMediumGray400(text = HomeStrings.LABEL_SPIRIT)
                 Spacer(modifier = Modifier.height(14.dp))
 
-                CardsHome(
+                ComponentCard(
                     title = HomeStrings.LABEL_TO_DO_LIST,
                     height = 213
                 ) {
@@ -81,7 +82,7 @@ fun HomeContent(
 
                 Spacer(modifier = Modifier.height(15.dp))
 
-                CardsHome(
+                ComponentCard(
                     title = HomeStrings.LABEL_ACTIVITY,
                     height = 265
                 ) {
@@ -90,4 +91,12 @@ fun HomeContent(
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun CheckScreen() {
+    HomeContent(
+        onClickToDoList = {}
+    )
 }

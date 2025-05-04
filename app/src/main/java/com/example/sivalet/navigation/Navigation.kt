@@ -30,6 +30,11 @@ fun SetupNavigation() {
             HomeScreen(
                 onClickConfirm = {
                     navController.navigate(Screen.ConfirmTask.route)
+                },
+                onClickLogout = {
+                    navController.navigate(Screen.Login.route) {
+                        popUpTo(0)
+                    }
                 }
             )
         }

@@ -28,6 +28,7 @@ import com.example.sivalet.presentation.task.TaskScreen
 @Composable
 fun HomeScreen(
     onClickConfirm: () -> Unit = {},
+    onClickLogout: () -> Unit = {}
 ){
     val items = listOf(
         Screen.Home,
@@ -90,7 +91,11 @@ fun HomeScreen(
                 HistoryScreen()
             }
             composable(Screen.Account.route) {
-                AccountScreen()
+                AccountScreen(
+                    onClickLogout = {
+                        onClickLogout()
+                    }
+                )
             }
         }
     }

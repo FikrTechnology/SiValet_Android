@@ -1,4 +1,4 @@
-package com.example.sivalet.presentation.component.home
+package com.example.sivalet.presentation.component.general
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -13,14 +13,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.sivalet.presentation.component.general.TextBodyMediumBlack500
 import com.example.sivalet.ui.theme.SiValetColor
 
 @Composable
-fun CardsHome(
+fun ComponentCard(
     title: String,
     height: Int,
+    colorBackgroundTitle: Color = SiValetColor.White,
     content: @Composable () -> Unit
 ) {
     Column(
@@ -33,11 +34,17 @@ fun CardsHome(
             )
             .background(SiValetColor.White)
     ) {
-        TextBodyMediumBlack500(
+        Box(
             modifier = Modifier
-                .padding(horizontal = 15.dp, vertical = 13.dp),
-            text = title
-        )
+                .fillMaxWidth()
+                .background(colorBackgroundTitle)
+        ) {
+            TextBodyMediumBlack500(
+                modifier = Modifier
+                    .padding(horizontal = 15.dp, vertical = 13.dp),
+                text = title
+            )
+        }
 
         Box {
             HorizontalDivider(

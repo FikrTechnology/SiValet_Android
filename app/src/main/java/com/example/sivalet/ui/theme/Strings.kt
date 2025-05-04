@@ -46,3 +46,12 @@ object ConfirmTaskStrings {
     const val TITLE_CUSTOMER = "Customer"
     const val LABEL_BUTTON_CLOCKIN = "Konfirmasi Clock In"
 }
+
+object AccountStrings {
+    const val LABEL_TABLE = "Umum"
+    const val TITLE_FEEDBACK = "Umpan Balik"
+    const val TITLE_ANNOUNCHMENT = "Pemberitahuan Sistem"
+    const val LABEL_BUTTON = "Keluar"
+    const val LABEL_VERSION = "Versi 1.0.0-beta"
+    const val LABEL_COPY_RIGHT = "Powered by FadjriCraft"
+}
