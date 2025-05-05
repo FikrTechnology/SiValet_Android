@@ -11,43 +11,6 @@ import androidx.compose.ui.unit.sp
 import com.example.sivalet.ui.theme.Roboto
 import com.example.sivalet.ui.theme.SiValetColor
 
-//////////////////////////////// TEXT Headline Styles //////////////////////////////////
-@Composable
-fun TextHeadline1(
-    text: String
-){
-    Text(
-        text = text,
-        style = MaterialTheme.typography.headlineLarge,
-        color = SiValetColor.Black,
-        fontWeight = FontWeight.W600,
-    )
-}
-
-@Composable
-fun TextHeadline2(
-    text: String
-){
-    Text(
-        text = text,
-        color = SiValetColor.Black,
-        fontSize = 24.sp,
-        fontWeight = FontWeight.W700,
-    )
-}
-
-@Composable
-fun TextHeadline3(
-    text: String
-){
-    Text(
-        text = text,
-        color = SiValetColor.Black,
-        fontSize = 18.sp,
-        fontWeight = FontWeight.W700,
-    )
-}
-
 
 //////////////////////////////// TEXT Title Style //////////////////////////////////
 @Composable
@@ -65,6 +28,20 @@ fun TextTitleMediumBlack600(
 
 
 //////////////////////////////// TEXT Body Style //////////////////////////////////
+@Composable
+fun TextBodyLarge600(
+    modifier: Modifier,
+    text: String,
+    color: Color = Color.Unspecified
+){
+    Text(
+        modifier = modifier,
+        text = text,
+        style = MaterialTheme.typography.bodyLarge,
+        color = color,
+        fontWeight = FontWeight.W600
+    )
+}
 
 @Composable
 fun TextBodyLargeWhite600(
@@ -216,49 +193,5 @@ fun TextBodySmall12sp500(
         color = SiValetColor.Black,
         fontSize = 12.sp,
         fontWeight = FontWeight.W500
-    )
-}
-
-
-////////////////////////////////// TEXT Label Style //////////////////////////////////
-@Composable
-fun TextLabel1Bold(
-    text: String,
-    color: Color = Color.Unspecified
-){
-    Text(
-        text = text,
-        color = color,
-        fontSize = 14.sp,
-        fontWeight = FontWeight.W600,
-    )
-}
-
-@Composable
-fun TextLabel2Reguler(
-    text: String,
-    color: Color = Color.Unspecified
-){
-    Text(
-        text = text,
-        color = color,
-        fontSize = 12.sp,
-        fontWeight = FontWeight.W400,
-    )
-}
-
-
-////////////////////////////////// TEXT Underline Style //////////////////////////////////
-@Composable
-fun TextUnderline2Bold(
-    text: String,
-    color: Color = Color.Unspecified
-){
-    Text(
-        text = text,
-        color = color,
-        textDecoration = TextDecoration.Underline,
-        fontSize = 14.sp,
-        fontWeight = FontWeight.W700
     )
 }

@@ -41,12 +41,12 @@ fun ComponentTopBar(
     Box(
         modifier = Modifier
             .statusBarsPadding()
+            .background(backgroundColor)
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 10.dp, horizontal = 18.dp)
-                .background(backgroundColor),
+                .padding(vertical = 10.dp, horizontal = 18.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {

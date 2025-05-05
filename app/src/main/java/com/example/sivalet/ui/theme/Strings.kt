@@ -55,3 +55,11 @@ object AccountStrings {
     const val LABEL_VERSION = "Versi 1.0.0-beta"
     const val LABEL_COPY_RIGHT = "Powered by FadjriCraft"
 }
+
+object HistoryStrings {
+    const val LABEL_PLAN = "Plan"
+    const val LABEL_PROCESS = "Proses"
+    const val LABEL_DONE = "Selesai"
+    const val LABEL_PICKUP = "Pickup"
+    const val LABEL_DELIVERY = "Delivery"
+}
