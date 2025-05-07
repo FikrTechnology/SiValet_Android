@@ -1,7 +1,5 @@
 package com.example.sivalet.presentation.history
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,13 +13,11 @@ import androidx.compose.material.Tab
 import androidx.compose.material.TabRowDefaults
 //noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,11 +33,13 @@ import kotlinx.coroutines.launch
 @Preview(showBackground = true)
 @Composable
 fun HistoryScreen() {
-    val tabs = listOf(HistoryStrings.LABEL_PLAN, HistoryStrings.LABEL_PROCESS, HistoryStrings.LABEL_DONE)
+    val tabs =
+        listOf(HistoryStrings.LABEL_PLAN, HistoryStrings.LABEL_PROCESS, HistoryStrings.LABEL_DONE)
     val pagerState = rememberPagerState()
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
+        containerColor = SiValetColor.White,
         contentWindowInsets = WindowInsets(
             left = 17.dp,
             top = 16.dp,
@@ -59,12 +57,11 @@ fun HistoryScreen() {
                 imgTrailing = painterResource(id = R.drawable.ico_notification)
             )
         }
-    ) { paddingValues->
+    ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .background(SiValetColor.White)
         ) {
             // Tabs
             ScrollableTabRow(
@@ -79,7 +76,7 @@ fun HistoryScreen() {
                     )
                 },
                 backgroundColor = SiValetColor.White,
-                divider = {  },
+                divider = { },
             ) {
                 tabs.forEachIndexed { index, title ->
                     Tab(
@@ -95,7 +92,11 @@ fun HistoryScreen() {
                                 style = if (pagerState.currentPage == index) {
                                     MaterialTheme.typography.bodyLarge.copy(color = SiValetColor.Primary)
                                 } else {
-                                    MaterialTheme.typography.bodyLarge.copy(color = SiValetColor.Black.copy(alpha = 0.6f))
+                                    MaterialTheme.typography.bodyLarge.copy(
+                                        color = SiValetColor.Black.copy(
+                                            alpha = 0.6f
+                                        )
+                                    )
                                 }
                             )
                         }
@@ -116,44 +117,5 @@ fun HistoryScreen() {
                 }
             }
         }
-    }
-}
-
-@Composable
-fun PlanContent() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "Plan Content",
-            style = MaterialTheme.typography.bodyLarge
-        )
-    }
-}
-
-@Composable
-fun ProcessContent() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "Process Content",
-            style = MaterialTheme.typography.bodyLarge
-        )
-    }
-}
-
-@Composable
-fun DoneContent() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "Done Content",
-            style = MaterialTheme.typography.bodyLarge
-        )
     }
 }

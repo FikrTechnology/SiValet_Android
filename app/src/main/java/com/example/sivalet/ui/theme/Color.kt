@@ -23,4 +23,6 @@ object SiValetColor {
     val BorderColor = Color(0xFFEEEEEE)
     val OldBlue = Color(0xFF085686)
     val Purple = Color(0xFF9747FF)
+    val Ivory = Color(0xFFF9FFE9)
+    val Bubbles = Color(0xFFE9FFF9)
 }

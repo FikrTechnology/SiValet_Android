@@ -14,6 +14,20 @@ import com.example.sivalet.ui.theme.SiValetColor
 
 //////////////////////////////// TEXT Title Style //////////////////////////////////
 @Composable
+fun TextTitleMedium(
+    text: String,
+    color: Color = Color.Unspecified,
+    fontWeight: FontWeight = FontWeight.W400,
+){
+    Text(
+        text = text,
+        style = MaterialTheme.typography.titleMedium,
+        color = color,
+        fontWeight = fontWeight
+    )
+}
+
+@Composable
 fun TextTitleMediumBlack600(
     text: String,
 ){
