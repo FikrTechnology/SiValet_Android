@@ -8,4 +8,5 @@ sealed class Screen(val route: String) {
     object History : Screen("history")
     object Account : Screen("account")
     object ForgotPassword : Screen("forgot_password")
+    object CoordinatorTask : Screen("coordinator_task")
 }

@@ -63,3 +63,18 @@ object HistoryStrings {
     const val LABEL_PICKUP = "Pickup"
     const val LABEL_DELIVERY = "Delivery"
 }
+
+object CoordinatorTaskStrings {
+    const val HEADLINE = "Tambahkan Tugas Driver"
+    const val LABEL_TAG_ACTIVITY = "Activity"
+    const val LABEL_PLACEHOLDER_DATE = "yyyy/mm/dd"
+    const val LABEL_PLACEHOLDER_CHOOSE_USER = "Pilih User"
+    const val LABEL_PLACEHOLDER_ESTIMATION = "Estimasi Lama Waktu"
+    const val LABEL_PLACEHOLDER_POLICE_NUMBER = "Masukan Nopol"
+    const val LABEL_PLACEHOLDER_CAR_TYPE = "Model Kendaraan"
+    const val LABEL_PLACEHOLDER_CUSTOMER_NAME = "Masukan Customer"
+    const val LABEL_PLACEHOLDER_TASK_DESC = "Deskripsi Tugas"
+    const val LABEL_PLACEHOLDER_ADDRESS = "Masukan Alamat"
+    const val LABEL_PLACEHOLDER_DRIVER_NAME = "Pilih Driver yang tersedia"
+    const val LABEL_BUTTON_ADD_TASK = "Tetapkan Tugas"
+}

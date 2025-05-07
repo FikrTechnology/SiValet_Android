@@ -7,6 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.sivalet.presentation.home.HomeScreen
 import com.example.sivalet.presentation.login.LoginScreen
 import com.example.sivalet.presentation.task.ConfirmationTaskScreen
+import com.example.sivalet.presentation.task.TaskCoordinatorScreen
 
 @Composable
 fun SetupNavigation() {
@@ -14,7 +15,7 @@ fun SetupNavigation() {
 
     NavHost(
         navController = navController,
-        startDestination = Screen.Login.route
+        startDestination = Screen.CoordinatorTask.route
     ) {
         composable(route = Screen.Login.route) {
             LoginScreen(
@@ -48,6 +49,9 @@ fun SetupNavigation() {
                     navController.popBackStack()
                 }
             )
+        }
+        composable(route = Screen.CoordinatorTask.route) {
+            TaskCoordinatorScreen()
         }
     }
 }
