@@ -4,19 +4,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowRight
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -25,6 +19,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -34,19 +30,19 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.sivalet.R
-import com.example.sivalet.presentation.component.general.CardTag
 import com.example.sivalet.presentation.component.general.ComponentButton
 import com.example.sivalet.presentation.component.general.TextBodyLargeBlack500
 import com.example.sivalet.presentation.component.general.TextBodyMedium
-import com.example.sivalet.presentation.component.general.TextBodyMediumBlack500
-import com.example.sivalet.presentation.component.general.TextBodyMediumGray400
 import com.example.sivalet.presentation.component.task.ComponentButtonDropdown
 import com.example.sivalet.presentation.component.task.ComponentCoordinatorTextField
 import com.example.sivalet.ui.theme.CoordinatorTaskStrings
@@ -69,6 +65,9 @@ fun TaskCoordinatorScreen(
     val sheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
     var showBottomSheet by remember { mutableStateOf(false) }
+
+    var estimationTime by remember { mutableStateOf(30f) }
+    var showEstimationBottomSheet by remember { mutableStateOf(false) }
 
     Scaffold(
         contentWindowInsets = WindowInsets(0.dp),
@@ -134,7 +133,7 @@ fun TaskCoordinatorScreen(
                     icon = painterResource(id = R.drawable.ico_time_black),
                     placeholderText = CoordinatorTaskStrings.LABEL_PLACEHOLDER_ESTIMATION,
                     onClick = {
-                        showBottomSheet = true
+                        showEstimationBottomSheet = true
                     }
                 )
 
@@ -262,5 +261,52 @@ fun TaskCoordinatorScreen(
                 }
             }
         }
+
+        if (showEstimationBottomSheet) {
+            ModalBottomSheet(
+                containerColor = SiValetColor.White,
+                onDismissRequest = { showEstimationBottomSheet = false },
+                sheetState = rememberModalBottomSheetState()
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp, vertical = 16.dp)
+                ) {
+                    Text(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "* geser untuk mengganti durasi",
+                        fontWeight = FontWeight.W400,
+                        fontSize = 11.sp,
+                        fontStyle = FontStyle.Italic,
+                        textAlign = TextAlign.Right,
+                    )
+                    TextBodyMedium(
+                        text = "${estimationTime.toInt()} menit",
+                        color = SiValetColor.Black
+                    )
+                    Slider(
+                        value = estimationTime,
+                        onValueChange = { estimationTime = it },
+                        valueRange = 30f..180f,
+                        steps = 4, // Akan memberikan step tiap 30 menit
+                        colors = SliderDefaults.colors(
+                            thumbColor = SiValetColor.Primary,
+                            activeTrackColor = SiValetColor.Primary
+                        )
+                    )
+                    ComponentButton(
+                        onClick = {
+                            showEstimationBottomSheet = false
+                        },
+                        labelButton = "Atur Estimasi Waktu",
+                        isWithIcon = false,
+                        colors = ButtonDefaults.buttonColors(SiValetColor.Primary),
+                        tint = SiValetColor.White
+                    )
+                }
+            }
+        }
+
     }
 }
