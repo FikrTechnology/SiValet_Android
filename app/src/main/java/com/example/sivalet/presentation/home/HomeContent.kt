@@ -31,7 +31,8 @@ import com.example.sivalet.ui.theme.SiValetColor
 
 @Composable
 fun HomeContent(
-    onClickToDoList : () -> Unit
+    onClickToDoList : () -> Unit,
+    isCoordinator: Boolean = false
 ) {
     Scaffold(
         contentWindowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp),

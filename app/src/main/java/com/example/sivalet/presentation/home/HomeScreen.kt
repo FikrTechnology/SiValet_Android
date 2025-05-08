@@ -33,7 +33,7 @@ fun HomeScreen(
     val navController = rememberNavController()
     val currentBackStack by navController.currentBackStackEntryAsState()
     val currentRoute = currentBackStack?.destination?.route
-    val isCoordinator = true
+    val isCoordinator = false
     val isUser = false
     val items = if (isUser) {
         listOf(
@@ -87,7 +87,8 @@ fun HomeScreen(
                 HomeContent(
                     onClickToDoList = {
                         navController.navigate(Screen.Task.route)
-                    }
+                    },
+                    isCoordinator = isCoordinator
                 )
             }
             if (!isUser){

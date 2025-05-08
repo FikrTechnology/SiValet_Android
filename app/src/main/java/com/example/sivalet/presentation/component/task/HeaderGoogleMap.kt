@@ -40,7 +40,8 @@ import com.example.sivalet.ui.theme.TaskStrings
 @Composable
 fun HeaderWithDropdown(
     selectedCar: String,
-    onCarSelected: (String) -> Unit
+    onCarSelected: (String) -> Unit,
+    locationName: String
 ) {
     var expanded by remember { mutableStateOf(false) }
 
@@ -115,13 +116,9 @@ fun HeaderWithDropdown(
 
             Spacer(modifier = Modifier.height(4.dp))
 
-            TextBodySemiLargeGray400(text = "Jalan Raya Kebayoran Lama No.26, Palmerah, VII, RT.1/RW.2, North Sukabumi, Kebonjeruk, West Jakarta City, Jakarta 11540")
+            if (locationName.isNotEmpty()) {
+                TextBodySemiLargeGray400(text = locationName)
+            }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun CheckHeader(){
-    HeaderWithDropdown(selectedCar = "RAIZE B55SKU") {}
 }
