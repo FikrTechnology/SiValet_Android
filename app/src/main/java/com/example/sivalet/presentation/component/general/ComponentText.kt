@@ -132,6 +132,22 @@ fun TextBodySemiLargeGray400(
 }
 
 @Composable
+fun TextBodyMedium(
+    modifier: Modifier = Modifier,
+    text: String,
+    color: Color = Color.Unspecified,
+    fontWeight: FontWeight = FontWeight.W400
+){
+    Text(
+        modifier = modifier,
+        text = text,
+        style = MaterialTheme.typography.bodyMedium,
+        color = color,
+        fontWeight = fontWeight
+    )
+}
+
+@Composable
 fun TextBodyMediumBlack500(
     modifier: Modifier = Modifier,
     text: String,
