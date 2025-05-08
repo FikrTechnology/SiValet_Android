@@ -15,7 +15,7 @@ fun SetupNavigation() {
 
     NavHost(
         navController = navController,
-        startDestination = Screen.CoordinatorTask.route
+        startDestination = Screen.Login.route
     ) {
         composable(route = Screen.Login.route) {
             LoginScreen(
@@ -49,9 +49,6 @@ fun SetupNavigation() {
                     navController.popBackStack()
                 }
             )
-        }
-        composable(route = Screen.CoordinatorTask.route) {
-            TaskCoordinatorScreen()
         }
     }
 }

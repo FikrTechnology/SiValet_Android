@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -35,6 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.sivalet.R
 import com.example.sivalet.presentation.component.general.CardTag
+import com.example.sivalet.presentation.component.general.ComponentButton
 import com.example.sivalet.presentation.component.general.TextBodyLargeBlack500
 import com.example.sivalet.presentation.component.task.ComponentButtonDropdown
 import com.example.sivalet.presentation.component.task.ComponentCoordinatorTextField
@@ -44,7 +46,10 @@ import com.example.sivalet.ui.theme.SiValetColor
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
-fun TaskCoordinatorScreen() {
+fun TaskCoordinatorScreen(
+    onClickBack: () -> Unit = {},
+    onClickAddTask: () -> Unit = {}
+) {
     var date by remember { mutableStateOf("") }
     var policeNumber by remember { mutableStateOf("") }
     var customerName by remember { mutableStateOf("") }
@@ -61,7 +66,7 @@ fun TaskCoordinatorScreen() {
                 },
                 navigationIcon = {
                     IconButton(
-                        onClick = {}
+                        onClick = { onClickBack() }
                     ) {
                         Icon(
                             modifier = Modifier.height(24.dp),
@@ -147,6 +152,22 @@ fun TaskCoordinatorScreen() {
                     icon = painterResource(id = R.drawable.ico_car_key),
                     placeholderText = CoordinatorTaskStrings.LABEL_PLACEHOLDER_DRIVER_NAME
                 )
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 15.dp)
+                        .background(Color.Transparent)
+                ) {
+                    ComponentButton(
+                        onClick = { onClickAddTask() },
+                        labelButton = CoordinatorTaskStrings.LABEL_BUTTON_ADD_TASK,
+                        isWithIcon = true,
+                        painter = painterResource(id = R.drawable.ico_play_arrow),
+                        colors = ButtonDefaults.buttonColors(SiValetColor.Primary),
+                        tint = SiValetColor.White,
+                    )
+                }
             }
         }
     }

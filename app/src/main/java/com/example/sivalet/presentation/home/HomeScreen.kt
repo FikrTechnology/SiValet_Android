@@ -21,7 +21,7 @@ import androidx.navigation.compose.composable
 import com.example.sivalet.presentation.account.AccountScreen
 import com.example.sivalet.presentation.component.general.RoundedBottomBar
 import com.example.sivalet.presentation.history.HistoryScreen
-import com.example.sivalet.presentation.task.ConfirmationTaskScreen
+import com.example.sivalet.presentation.task.TaskCoordinatorScreen
 import com.example.sivalet.presentation.task.TaskScreen
 
 @Preview(showBackground = true, showSystemUi = true)
@@ -30,15 +30,25 @@ fun HomeScreen(
     onClickConfirm: () -> Unit = {},
     onClickLogout: () -> Unit = {}
 ){
-    val items = listOf(
-        Screen.Home,
-        Screen.Task,
-        Screen.History,
-        Screen.Account
-    )
     val navController = rememberNavController()
     val currentBackStack by navController.currentBackStackEntryAsState()
     val currentRoute = currentBackStack?.destination?.route
+    val isCoordinator = false
+    val isUser = true
+    val items = if (isUser) {
+        listOf(
+            Screen.Home,
+            Screen.History,
+            Screen.Account
+        )
+    } else {
+        listOf(
+            Screen.Home,
+            Screen.Task,
+            Screen.History,
+            Screen.Account
+        )
+    }
 
     Scaffold(
         modifier = Modifier.safeDrawingPadding(),
@@ -80,12 +90,25 @@ fun HomeScreen(
                     }
                 )
             }
-            composable(Screen.Task.route) {
-                TaskScreen(
-                    onClickConfirm = {
-                        onClickConfirm()
+            if (!isUser){
+                composable(Screen.Task.route) {
+                    if (isCoordinator) {
+                        TaskCoordinatorScreen(
+                            onClickBack = {
+                                navController.popBackStack()
+                            },
+                            onClickAddTask = {
+                                navController.popBackStack()
+                            }
+                        )
+                    } else {
+                        TaskScreen(
+                            onClickConfirm = {
+                                onClickConfirm()
+                            }
+                        )
                     }
-                )
+                }
             }
             composable(Screen.History.route) {
                 HistoryScreen()
