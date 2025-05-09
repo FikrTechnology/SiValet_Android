@@ -5,15 +5,20 @@ import android.content.pm.PackageManager
 import android.location.Geocoder
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -22,7 +27,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -147,34 +154,60 @@ fun TaskScreen(
             )
         }
     ) {paddingValues ->
-        GoogleMap(
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues),
-            cameraPositionState = cameraPositionState
         ) {
-            userLocation?.let {
-                Marker(
-                    state = MarkerState(position = it),
-                    title = "Current Location"
+            GoogleMap(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+                cameraPositionState = cameraPositionState
+            ) {
+                userLocation?.let {
+                    Marker(
+                        state = MarkerState(position = it),
+                        title = "Current Location"
+                    )
+                }
+            }
+
+            // Tombol titik saat ini
+            IconButton(
+                onClick = {
+                    userLocation?.let {
+                        cameraPositionState.move(CameraUpdateFactory.newLatLngZoom(it, 16f))
+                    }
+                },
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(end = 16.dp, bottom = 150.dp)
+                    .background(Color.White, shape = CircleShape)
+                    .border(1.dp, Color.Gray, CircleShape)
+                    .size(48.dp)
+            ) {
+                Icon(
+                    modifier = Modifier.size(24.dp),
+                    painter = painterResource(id = R.drawable.ico_current_location),
+                    contentDescription = "My Location",
+                    tint = Color.Black
                 )
             }
-        }
 
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-        ) {
-            HeaderWithDropdown(
-                selectedCar = selectedCar,
-                onCarSelected = { selectedCar = it },
-                locationName = addressText.orEmpty(),
-            )
-            if (statusOnGoing) {
-                InformationStatusOngoing()
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+            ) {
+                HeaderWithDropdown(
+                    selectedCar = selectedCar,
+                    onCarSelected = { selectedCar = it },
+                    locationName = addressText.orEmpty(),
+                )
+                if (statusOnGoing) {
+                    InformationStatusOngoing()
+                }
             }
         }
-
     }
 }
