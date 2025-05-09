@@ -14,13 +14,15 @@ import androidx.compose.ui.unit.dp
 fun CardTag(
     text: String,
     backgroundColor: Color = Color.Unspecified,
-    textColorBlack: Boolean = true
+    textColorBlack: Boolean = true,
+    paddingHorizontal: Int = 8,
+    paddingVertical: Int = 2,
 ) {
     Box(
         modifier = Modifier
             .clip(shape = RoundedCornerShape(2.dp))
             .background(backgroundColor)
-            .padding(horizontal = 8.dp, vertical = 2.dp)
+            .padding(horizontal = paddingHorizontal.dp, vertical = paddingVertical.dp)
     ) {
         if (textColorBlack) {
             TextBodyMediumBlack500(text = text)

@@ -24,6 +24,7 @@ import com.example.sivalet.presentation.component.general.InformationStatusOngoi
 import com.example.sivalet.presentation.component.general.TextBodyMediumGray400
 import com.example.sivalet.presentation.component.general.TextTitleMediumBlack600
 import com.example.sivalet.presentation.component.general.ComponentCard
+import com.example.sivalet.presentation.component.home.LazyColumnDriverList
 import com.example.sivalet.presentation.component.home.LazyColumnToDoList
 import com.example.sivalet.presentation.component.home.PieChartSection
 import com.example.sivalet.ui.theme.HomeStrings
@@ -69,16 +70,25 @@ fun HomeContent(
             ) {
                 TextTitleMediumBlack600(text = "Halo Zay!")
                 Spacer(modifier = Modifier.height(2.dp))
-                TextBodyMediumGray400(text = HomeStrings.LABEL_SPIRIT)
+                TextBodyMediumGray400(text = if (!isCoordinator) HomeStrings.LABEL_SPIRIT else HomeStrings.LABEL_SPIRIT_COORDINATOR)
                 Spacer(modifier = Modifier.height(14.dp))
 
-                ComponentCard(
-                    title = HomeStrings.LABEL_TO_DO_LIST,
-                    height = 213
-                ) {
-                    LazyColumnToDoList(
-                        onClickToDoList = onClickToDoList
-                    )
+                if (!isCoordinator) {
+                    ComponentCard(
+                        title = HomeStrings.LABEL_TO_DO_LIST,
+                        height = 213
+                    ) {
+                        LazyColumnToDoList(
+                            onClickToDoList = onClickToDoList
+                        )
+                    }
+                } else {
+                    ComponentCard(
+                        title = HomeStrings.LABEL_DRIVER_STATUS,
+                        height = 356
+                    ) {
+                        LazyColumnDriverList()
+                    }
                 }
 
                 Spacer(modifier = Modifier.height(15.dp))

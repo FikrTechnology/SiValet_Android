@@ -26,7 +26,10 @@ object HomeStrings {
     const val LABEL_TASK = "% Tugas"
     const val LABLE_PICKUP = "Pickup"
     const val LABEL_DELIVERY = "Delivery"
+    const val LABEL_STAND_BY = "Standby"
     const val LABEL_LAST_30_DAYS = "30 hari terakhir"
+    const val LABEL_DRIVER_STATUS = "Status Driver"
+    const val LABEL_WHATSAPP = "CLICK TO CHAT"
 }
 
 object TaskStrings {
