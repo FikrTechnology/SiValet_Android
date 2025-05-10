@@ -35,19 +35,24 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.sivalet.R
 import com.example.sivalet.presentation.component.general.ComponentButton
+import com.example.sivalet.presentation.component.general.TextBodyMedium
 import com.example.sivalet.presentation.component.login.OutlinedTextFieldLogin
 import com.example.sivalet.presentation.component.general.TextBodySmallOldBlue500
+import com.example.sivalet.presentation.viewmodel.login.LoginViewModel
 import com.example.sivalet.ui.theme.LoginStrings
 import com.example.sivalet.ui.theme.SiValetColor
 
 @Composable
 fun LoginScreen(
     onClickMasuk : () -> Unit,
-    onClickForgotPass : () -> Unit
+    onClickForgotPass : () -> Unit,
+    viewModel: LoginViewModel = LoginViewModel()
 ) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
+    var usernameError by remember { mutableStateOf(false) }
+    var passwordError by remember { mutableStateOf(false) }
 
     Scaffold(
         contentWindowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
@@ -105,17 +110,26 @@ fun LoginScreen(
                     OutlinedTextFieldLogin(
                         labelName = LoginStrings.LABEL_USERNAME,
                         value = username,
-                        onValueChange = { username = it },
+                        onValueChange = {
+                            username = it
+                            usernameError = false
+                        },
                         placeholder = LoginStrings.PLACEHOLDER_USERNAME,
                         keyboardType = KeyboardType.Email
                     )
+                    if (usernameError) {
+                        TextBodyMedium(text = "Username cannot be empty", color = SiValetColor.Red)
+                    }
 
                     Spacer(modifier = Modifier.height(16.dp))
 
                     OutlinedTextFieldLogin(
                         labelName = LoginStrings.LABEL_PASSWORD,
                         value = password,
-                        onValueChange = { password = it },
+                        onValueChange = {
+                            password = it
+                            passwordError = false
+                        },
                         placeholder = LoginStrings.PLACEHOLDER_PASSWORD,
                         trailingIcon = {
                             val image = if (passwordVisible)
@@ -133,11 +147,33 @@ fun LoginScreen(
                         keyboardType = KeyboardType.Password,
                         visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation()
                     )
+                    if (passwordError) {
+                        TextBodyMedium(text = "Password cannot be empty", color = SiValetColor.Red)
+                    }
 
                     Spacer(modifier = Modifier.height(25.dp))
 
                     ComponentButton(
-                        onClick = { onClickMasuk() },
+                        onClick = {
+                            var hasError = false
+                            if (username.isBlank()) {
+                                usernameError = true
+                                hasError = true
+                            }
+                            if (password.isBlank()) {
+                                passwordError = true
+                                hasError = true
+                            }
+                            if (!hasError) {
+                                viewModel.login(username, password) { success, message ->
+                                    if (success) {
+                                        onClickMasuk()
+                                    } else {
+                                        println("Login failed: $message")
+                                    }
+                                }
+                            }
+                        },
                         colors = ButtonDefaults.buttonColors(SiValetColor.Primary),
                         labelButton = LoginStrings.BUTTON_MASUK
                     )
