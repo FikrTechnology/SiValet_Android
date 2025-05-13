@@ -25,7 +25,8 @@ fun ComponentButton(
     isTextColorWhite: Boolean = true,
     painter: Painter? = null,
     tint: Color = LocalContentColor.current,
-    labelButton: String = "Button"
+    labelButton: String = "Button",
+    enabled: Boolean = true
 ) {
     Button(
         modifier = Modifier

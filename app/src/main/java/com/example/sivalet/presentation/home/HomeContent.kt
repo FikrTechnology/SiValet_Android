@@ -15,7 +15,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.example.sivalet.R
@@ -27,14 +26,18 @@ import com.example.sivalet.presentation.component.general.ComponentCard
 import com.example.sivalet.presentation.component.home.LazyColumnDriverList
 import com.example.sivalet.presentation.component.home.LazyColumnToDoList
 import com.example.sivalet.presentation.component.home.PieChartSection
+import com.example.sivalet.presentation.viewmodel.login.LoginViewModel
 import com.example.sivalet.ui.theme.HomeStrings
 import com.example.sivalet.ui.theme.SiValetColor
 
 @Composable
 fun HomeContent(
     onClickToDoList : () -> Unit,
-    isCoordinator: Boolean = false
+    isCoordinator: Boolean = false,
+    loginViewModel: LoginViewModel
 ) {
+    val userData = loginViewModel.userData
+
     Scaffold(
         contentWindowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp),
         containerColor = SiValetColor.White,
@@ -44,7 +47,7 @@ fun HomeContent(
                 profile = true,
                 trailing = true,
                 imgProfile = painterResource(id = R.drawable.img_profile),
-                nameProfile = "Zainudin",
+                nameProfile = userData?.user?.fullname,
                 imgTrailing = painterResource(id = R.drawable.ico_notification),
                 borderBottom = true
             )
@@ -68,7 +71,7 @@ fun HomeContent(
                 modifier = Modifier
                     .padding(horizontal = 18.dp, vertical = 20.dp)
             ) {
-                TextTitleMediumBlack600(text = "Halo Zay!")
+                TextTitleMediumBlack600(text = "Halo ${userData?.user?.fullname}!")
                 Spacer(modifier = Modifier.height(2.dp))
                 TextBodyMediumGray400(text = if (!isCoordinator) HomeStrings.LABEL_SPIRIT else HomeStrings.LABEL_SPIRIT_COORDINATOR)
                 Spacer(modifier = Modifier.height(14.dp))
@@ -102,12 +105,4 @@ fun HomeContent(
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun CheckScreen() {
-    HomeContent(
-        onClickToDoList = {}
-    )
 }

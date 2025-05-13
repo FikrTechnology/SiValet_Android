@@ -34,6 +34,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.sivalet.R
+import com.example.sivalet.data.model.login.LoginData
 import com.example.sivalet.presentation.component.general.ComponentButton
 import com.example.sivalet.presentation.component.general.TextBodyMedium
 import com.example.sivalet.presentation.component.login.OutlinedTextFieldLogin
@@ -44,7 +45,7 @@ import com.example.sivalet.ui.theme.SiValetColor
 
 @Composable
 fun LoginScreen(
-    onClickMasuk : () -> Unit,
+    onClickMasuk : (LoginData) -> Unit,
     onClickForgotPass : () -> Unit,
     viewModel: LoginViewModel = LoginViewModel()
 ) {
@@ -166,8 +167,11 @@ fun LoginScreen(
                             }
                             if (!hasError) {
                                 viewModel.login(username, password) { success, message ->
-                                    if (success) {
-                                        onClickMasuk()
+                                    val userData = viewModel.userData
+                                    if (success && userData != null) {
+                                        onClickMasuk(
+                                            userData
+                                        )
                                     } else {
                                         println("Login failed: $message")
                                     }

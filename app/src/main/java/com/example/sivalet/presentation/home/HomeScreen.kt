@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -23,17 +22,19 @@ import com.example.sivalet.presentation.component.general.RoundedBottomBar
 import com.example.sivalet.presentation.history.HistoryScreen
 import com.example.sivalet.presentation.task.TaskCoordinatorScreen
 import com.example.sivalet.presentation.task.TaskScreen
+import com.example.sivalet.presentation.viewmodel.login.LoginViewModel
 
-@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun HomeScreen(
     onClickConfirm: () -> Unit = {},
-    onClickLogout: () -> Unit = {}
+    onClickLogout: () -> Unit = {},
+    loginViewModel: LoginViewModel
 ){
+    val userData = loginViewModel.userData
     val navController = rememberNavController()
     val currentBackStack by navController.currentBackStackEntryAsState()
     val currentRoute = currentBackStack?.destination?.route
-    val isCoordinator = true
+    val isCoordinator = userData?.user?.role != "driver"
     val isUser = false
     val items = if (isUser) {
         listOf(
@@ -88,7 +89,8 @@ fun HomeScreen(
                     onClickToDoList = {
                         navController.navigate(Screen.Task.route)
                     },
-                    isCoordinator = isCoordinator
+                    isCoordinator = isCoordinator,
+                    loginViewModel = loginViewModel
                 )
             }
             if (!isUser){

@@ -1,17 +1,19 @@
 package com.example.sivalet.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.sivalet.presentation.home.HomeScreen
 import com.example.sivalet.presentation.login.LoginScreen
 import com.example.sivalet.presentation.task.ConfirmationTaskScreen
-import com.example.sivalet.presentation.task.TaskCoordinatorScreen
+import com.example.sivalet.presentation.viewmodel.login.LoginViewModel
 
 @Composable
 fun SetupNavigation() {
     val navController = rememberNavController()
+    val loginViewModel: LoginViewModel = viewModel()
 
     NavHost(
         navController = navController,
@@ -19,7 +21,8 @@ fun SetupNavigation() {
     ) {
         composable(route = Screen.Login.route) {
             LoginScreen(
-                onClickMasuk = {
+                onClickMasuk = { loginData ->
+                    loginViewModel.updateUserData(loginData)
                     navController.navigate(Screen.Home.route) {
                         popUpTo(0)
                     }
@@ -36,7 +39,8 @@ fun SetupNavigation() {
                     navController.navigate(Screen.Login.route) {
                         popUpTo(0)
                     }
-                }
+                },
+                loginViewModel = loginViewModel
             )
         }
         composable(route = Screen.ForgotPassword.route) {}

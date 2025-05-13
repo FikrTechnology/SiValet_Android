@@ -12,7 +12,7 @@ data class LoginData(
 )
 
 data class User(
-    val fullName: String,
+    val fullname: String,
     val email: String,
     val phone: String,
     val address: String,
