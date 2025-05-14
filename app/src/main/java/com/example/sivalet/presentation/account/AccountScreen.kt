@@ -26,14 +26,17 @@ import com.example.sivalet.presentation.component.general.ComponentButton
 import com.example.sivalet.presentation.component.general.ComponentCard
 import com.example.sivalet.presentation.component.general.TextBodyLargeBlack500
 import com.example.sivalet.presentation.component.general.TextBodyMediumGray400
+import com.example.sivalet.presentation.viewmodel.login.LoginViewModel
 import com.example.sivalet.ui.theme.AccountStrings
 import com.example.sivalet.ui.theme.SiValetColor
 
-@Preview(showBackground = true)
 @Composable
 fun AccountScreen(
-    onClickLogout: () -> Unit = {}
+    onClickLogout: () -> Unit = {},
+    loginViewModel: LoginViewModel
 ){
+    val userData = loginViewModel.userData
+
     Scaffold(
         contentWindowInsets = WindowInsets(
             top = 31.dp,
@@ -61,8 +64,8 @@ fun AccountScreen(
                     contentDescription = null
                 )
                 Spacer(modifier = Modifier.height(14.dp))
-                TextBodyLargeBlack500(text = "Zainudin")
-                TextBodyMediumGray400(text = "Driver")
+                TextBodyLargeBlack500(text = "${userData?.user?.fullname}")
+                TextBodyMediumGray400(text = "${userData?.user?.role}")
             }
 
             ComponentCard(
@@ -71,7 +74,7 @@ fun AccountScreen(
                 colorBackgroundTitle = SiValetColor.SmoothWhite
             ) {
                 ComponentContentTable(
-                    accountName = "Driver",
+                    accountName = "${userData?.user?.role}",
                     accountPhone = "0857 xxxx xxxx"
                 )
             }

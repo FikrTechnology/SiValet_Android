@@ -124,7 +124,8 @@ fun HomeScreen(
                 AccountScreen(
                     onClickLogout = {
                         onClickLogout()
-                    }
+                    },
+                    loginViewModel = loginViewModel
                 )
             }
         }
