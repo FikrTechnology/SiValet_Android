@@ -4,7 +4,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,10 +15,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowRight
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -36,7 +33,6 @@ import com.example.sivalet.presentation.component.general.TextBodyMedium
 import com.example.sivalet.presentation.component.general.TextBodyMediumBlack500
 import com.example.sivalet.ui.theme.HomeStrings
 import com.example.sivalet.ui.theme.SiValetColor
-import com.example.sivalet.ui.theme.TaskStrings
 
 @Composable
 fun LazyColumnToDoList(
@@ -128,8 +124,6 @@ fun LazyColumnToDoList(
 @Composable
 fun LazyColumnDriverList() {
     var expanded by remember { mutableStateOf(false) }
-
-    val carList = listOf("RAIZE B55SKU", "AVANZA D88NJK", "INNOVA Z99KLM")
 
     LazyColumn(
         modifier = Modifier

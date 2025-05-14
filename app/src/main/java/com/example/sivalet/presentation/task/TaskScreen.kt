@@ -55,7 +55,8 @@ import java.util.Locale
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun TaskScreen(
-    onClickConfirm: () -> Unit = {}
+    onClickConfirm: () -> Unit = {},
+    onClickChooseTask: () -> Unit = {}
 ){
     val context = LocalContext.current
     val fusedLocationProviderClient = remember {
@@ -200,6 +201,9 @@ fun TaskScreen(
                     .wrapContentHeight()
             ) {
                 HeaderWithDropdown(
+                    onClickChooseTask = {
+                        onClickChooseTask()
+                    },
                     selectedCar = selectedCar,
                     onCarSelected = { selectedCar = it },
                     locationName = addressText.orEmpty(),

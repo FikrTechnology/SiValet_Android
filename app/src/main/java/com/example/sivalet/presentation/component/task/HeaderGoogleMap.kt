@@ -39,6 +39,7 @@ import com.example.sivalet.ui.theme.TaskStrings
 
 @Composable
 fun HeaderWithDropdown(
+    onClickChooseTask: () -> Unit = {},
     selectedCar: String,
     onCarSelected: (String) -> Unit,
     locationName: String
@@ -58,7 +59,7 @@ fun HeaderWithDropdown(
         Column(
             modifier = Modifier
                 .clickable {
-                    expanded = !expanded
+                    onClickChooseTask()
                 }
         ) {
             Row(
@@ -77,20 +78,6 @@ fun HeaderWithDropdown(
                     backgroundColor = SiValetColor.Purple,
                     textColorBlack = false
                 )
-            }
-
-            AnimatedVisibility(expanded) {
-                Column {
-                    carList.forEach { car ->
-                        DropdownMenuItem(
-                            text = { Text(car) },
-                            onClick = {
-                                onCarSelected(car)
-                                expanded = false
-                            }
-                        )
-                    }
-                }
             }
         }
 

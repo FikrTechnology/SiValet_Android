@@ -28,6 +28,7 @@ import com.example.sivalet.presentation.viewmodel.login.LoginViewModel
 fun HomeScreen(
     onClickConfirm: () -> Unit = {},
     onClickLogout: () -> Unit = {},
+    onClickChooseTask: () -> Unit = {},
     loginViewModel: LoginViewModel
 ){
     val userData = loginViewModel.userData
@@ -108,7 +109,10 @@ fun HomeScreen(
                         TaskScreen(
                             onClickConfirm = {
                                 onClickConfirm()
-                            }
+                            },
+                            onClickChooseTask = {
+                                onClickChooseTask()
+                            },
                         )
                     }
                 }
