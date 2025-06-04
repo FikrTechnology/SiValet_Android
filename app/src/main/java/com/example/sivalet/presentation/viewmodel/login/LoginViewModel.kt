@@ -14,12 +14,17 @@ class LoginViewModel : ViewModel() {
     var userData by mutableStateOf<LoginData?>(null)
         private set
 
+    var isLoading by mutableStateOf(false)
+        private set
+
     fun updateUserData(data: LoginData) {
         userData = data
     }
 
     fun login(emailOrUsername: String, password: String, onResult: (Boolean, String) -> Unit) {
         viewModelScope.launch {
+            isLoading = true
+            println("isLoading set to true")
             try {
                 val response = RetrofitClient.apiService.login(
                     LoginRequest(emailOrUsername = emailOrUsername, password = password)
@@ -32,6 +37,9 @@ class LoginViewModel : ViewModel() {
                 }
             } catch (e: Exception) {
                 onResult(false, e.message ?: "An error occurred")
+            } finally {
+                isLoading = false
+                println("isLoading set to false")
             }
         }
     }

@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -42,12 +43,13 @@ import com.example.sivalet.presentation.component.general.TextBodySmallOldBlue50
 import com.example.sivalet.presentation.viewmodel.login.LoginViewModel
 import com.example.sivalet.ui.theme.LoginStrings
 import com.example.sivalet.ui.theme.SiValetColor
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun LoginScreen(
     onClickMasuk : (LoginData) -> Unit,
     onClickForgotPass : () -> Unit,
-    viewModel: LoginViewModel = LoginViewModel()
+    viewModel: LoginViewModel = koinViewModel()
 ) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -194,6 +196,17 @@ fun LoginScreen(
                             TextBodySmallOldBlue500(text = LoginStrings.TEXT_BUTTON_FORGOT_PASS)
                         }
                     }
+                }
+            }
+
+            if (viewModel.isLoading) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(SiValetColor.SmoothWhite.copy(alpha = 0.5f)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator(color = SiValetColor.Primary)
                 }
             }
         }
