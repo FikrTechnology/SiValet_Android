@@ -26,4 +26,5 @@ object SiValetColor {
     val Ivory = Color(0xFFF9FFE9)
     val Bubbles = Color(0xFFE9FFF9)
     val Gray = Color(0xFFDADADA)
+    val Danger = Color(0xFF9C2B05)
 }

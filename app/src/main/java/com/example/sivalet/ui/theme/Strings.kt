@@ -30,6 +30,10 @@ object HomeStrings {
     const val LABEL_LAST_30_DAYS = "30 hari terakhir"
     const val LABEL_DRIVER_STATUS = "Status Driver"
     const val LABEL_WHATSAPP = "CLICK TO CHAT"
+    const val LABEL_TITLE_NOTIFICATION = "Pusat Notifikasi"
+    const val LABEL_SUBTITLE_NOTIFICATION = "Tinjau notifikasi pekerjaan yang dikirim oleh Koordinator."
+    const val LABEL_READ = "Tandai Terbaca"
+    const val LABEL_DELETE = "Hapus Notifikasi"
 }
 
 object TaskStrings {
