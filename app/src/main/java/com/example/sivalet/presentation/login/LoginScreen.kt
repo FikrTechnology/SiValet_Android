@@ -171,9 +171,15 @@ fun LoginScreen(
                                 viewModel.login(username, password) { success, message ->
                                     val userData = viewModel.userData
                                     if (success && userData != null) {
-                                        onClickMasuk(
-                                            userData
-                                        )
+                                        viewModel.fetchTasks { taskSuccess, taskMessage ->
+                                            if (taskSuccess) {
+                                                onClickMasuk(
+                                                    userData
+                                                )
+                                            } else {
+                                                println("Failed to fetch tasks: $taskMessage")
+                                            }
+                                        }
                                     } else {
                                         println("Login failed: $message")
                                     }

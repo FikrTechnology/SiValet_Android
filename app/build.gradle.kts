@@ -76,4 +76,5 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
+    implementation(libs.okhttp)
 }

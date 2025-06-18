@@ -53,6 +53,7 @@ fun HomeContent(
     loginViewModel: LoginViewModel
 ) {
     val userData = loginViewModel.userData
+    val tasks = loginViewModel.assignedTasks
     var showNotificationList by remember { mutableStateOf(false) }
 
     // Notification state
@@ -186,7 +187,9 @@ fun HomeContent(
                                 title = HomeStrings.LABEL_DRIVER_STATUS,
                                 height = 356
                             ) {
-                                LazyColumnDriverList()
+                                LazyColumnDriverList(
+                                    tasks = tasks
+                                )
                             }
                         }
 

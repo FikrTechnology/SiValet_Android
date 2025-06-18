@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -28,6 +29,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.sivalet.R
+import com.example.sivalet.data.model.home.TaskItem
 import com.example.sivalet.presentation.component.general.CardTag
 import com.example.sivalet.presentation.component.general.TextBodyMedium
 import com.example.sivalet.presentation.component.general.TextBodyMediumBlack500
@@ -122,365 +124,151 @@ fun LazyColumnToDoList(
 
 
 @Composable
-fun LazyColumnDriverList() {
+fun LazyColumnDriverList(
+    modifier: Modifier = Modifier,
+    tasks: List<TaskItem>
+) {
+    println("LazyColumnDriverList: ${tasks.size} tasks available")
+    if (tasks.isEmpty()) {
+        // Tampilkan pesan jika data kosong
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            TextBodyMediumBlack500(text = "No tasks available")
+        }
+    } else {
+        LazyColumn(
+            modifier = modifier
+                .padding(10.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
+            items(tasks) { task ->
+                DriverItem(task = task)
+            }
+        }
+    }
+}
+
+@Composable
+fun DriverItem(
+    task: TaskItem
+) {
     var expanded by remember { mutableStateOf(false) }
-
-    LazyColumn(
+    println("DriverItem: ${task.driver.name}, Progress: ${task.progress}")
+    Column(
         modifier = Modifier
-            .padding(10.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp),
+            .clickable {
+                expanded = !expanded
+            }
     ) {
-        item {
-            Column(
-                modifier = Modifier
-                    .clickable {
-                        expanded = !expanded
-                    }
-            ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 10.dp, vertical = 8.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(
-                        imageVector = if (expanded) Icons.Default.KeyboardArrowDown else Icons.Default.KeyboardArrowRight,
-                        contentDescription = "Down Arrow",
-                    )
-                    Spacer(modifier = Modifier.width(5.dp))
-                    TextBodyMediumBlack500(text = "Thomas")
-                    Spacer(modifier = Modifier.weight(1f))
-                    CardTag(
-                        text = HomeStrings.LABEL_STAND_BY,
-                        backgroundColor = SiValetColor.BorderColor,
-                        paddingHorizontal = 10,
-                        paddingVertical = 8
-                    )
-                }
-
-                AnimatedVisibility(
-                    modifier = Modifier
-                        .padding(0.dp)
-                        .background(SiValetColor.SmoothWhite),
-                    visible = expanded
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 17.dp, vertical = 7.dp)
-                    ) {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        ) {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp, horizontal = 10.dp)
-                            ) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ico_whatsapp),
-                                    contentDescription = null,
-                                    tint = SiValetColor.Primary
-                                )
-                                Spacer(modifier = Modifier.width(10.dp))
-                                TextBodyMedium(
-                                    text = HomeStrings.LABEL_WHATSAPP,
-                                    color = SiValetColor.Primary
-                                )
-                            }
-                            HorizontalDivider(
-                                color = SiValetColor.Gray
-                            )
-                        }
-
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        ) {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp, horizontal = 10.dp)
-                            ) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ico_car_key),
-                                    contentDescription = null,
-                                    tint = SiValetColor.Black
-                                )
-                                Spacer(modifier = Modifier.width(10.dp))
-                                TextBodyMedium(
-                                    text = "RAIZE - B66AKU",
-                                    color = SiValetColor.Black
-                                )
-                            }
-                            HorizontalDivider(
-                                color = SiValetColor.Gray
-                            )
-                        }
-
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        ) {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp, horizontal = 10.dp)
-                            ) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ico_user),
-                                    contentDescription = null,
-                                    tint = SiValetColor.Black
-                                )
-                                Spacer(modifier = Modifier.width(10.dp))
-                                TextBodyMedium(
-                                    text = "NURITA",
-                                    color = SiValetColor.Black
-                                )
-                            }
-                            HorizontalDivider(
-                                color = SiValetColor.Gray
-                            )
-                        }
-                    }
-                }
-            }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 10.dp, vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                imageVector = if (expanded) Icons.Default.KeyboardArrowDown else Icons.Default.KeyboardArrowRight,
+                contentDescription = "Down Arrow",
+            )
+            Spacer(modifier = Modifier.width(5.dp))
+            TextBodyMediumBlack500(text = task.driver.name)
+            Spacer(modifier = Modifier.weight(1f))
+            CardTag(
+                text = task.progress,
+                backgroundColor = SiValetColor.BorderColor,
+                paddingHorizontal = 10,
+                paddingVertical = 8
+            )
         }
 
-        item {
+        AnimatedVisibility(
+            modifier = Modifier
+                .padding(0.dp)
+                .background(SiValetColor.SmoothWhite),
+            visible = expanded
+        ) {
             Column(
                 modifier = Modifier
-                    .clickable {
-                        expanded = !expanded
-                    }
+                    .fillMaxWidth()
+                    .padding(horizontal = 17.dp, vertical = 7.dp)
             ) {
-                Row(
+                Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 10.dp, vertical = 8.dp),
-                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Icon(
-                        imageVector = if (expanded) Icons.Default.KeyboardArrowDown else Icons.Default.KeyboardArrowRight,
-                        contentDescription = "Down Arrow",
-                    )
-                    Spacer(modifier = Modifier.width(5.dp))
-                    TextBodyMediumBlack500(text = "Ferdi")
-                    Spacer(modifier = Modifier.weight(1f))
-                    CardTag(
-                        text = HomeStrings.LABLE_PICKUP,
-                        backgroundColor = SiValetColor.Third,
-                        paddingHorizontal = 10,
-                        paddingVertical = 8
-                    )
-                }
-
-                AnimatedVisibility(
-                    modifier = Modifier
-                        .padding(0.dp)
-                        .background(SiValetColor.SmoothWhite),
-                    visible = expanded
-                ) {
-                    Column(
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 17.dp, vertical = 7.dp)
+                            .padding(vertical = 8.dp, horizontal = 10.dp)
                     ) {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        ) {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp, horizontal = 10.dp)
-                            ) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ico_whatsapp),
-                                    contentDescription = null,
-                                    tint = SiValetColor.Primary
-                                )
-                                Spacer(modifier = Modifier.width(10.dp))
-                                TextBodyMedium(
-                                    text = HomeStrings.LABEL_WHATSAPP,
-                                    color = SiValetColor.Primary
-                                )
-                            }
-                            HorizontalDivider(
-                                color = SiValetColor.Gray
-                            )
-                        }
-
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        ) {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp, horizontal = 10.dp)
-                            ) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ico_car_key),
-                                    contentDescription = null,
-                                    tint = SiValetColor.Black
-                                )
-                                Spacer(modifier = Modifier.width(10.dp))
-                                TextBodyMedium(
-                                    text = "RAIZE - B66AKU",
-                                    color = SiValetColor.Black
-                                )
-                            }
-                            HorizontalDivider(
-                                color = SiValetColor.Gray
-                            )
-                        }
-
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        ) {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp, horizontal = 10.dp)
-                            ) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ico_user),
-                                    contentDescription = null,
-                                    tint = SiValetColor.Black
-                                )
-                                Spacer(modifier = Modifier.width(10.dp))
-                                TextBodyMedium(
-                                    text = "NURITA",
-                                    color = SiValetColor.Black
-                                )
-                            }
-                            HorizontalDivider(
-                                color = SiValetColor.Gray
-                            )
-                        }
+                        Icon(
+                            painter = painterResource(id = R.drawable.ico_whatsapp),
+                            contentDescription = null,
+                            tint = SiValetColor.Primary
+                        )
+                        Spacer(modifier = Modifier.width(10.dp))
+                        TextBodyMedium(
+                            text = HomeStrings.LABEL_WHATSAPP,
+                            color = SiValetColor.Primary
+                        )
                     }
+                    HorizontalDivider(
+                        color = SiValetColor.Gray
+                    )
                 }
-            }
-        }
 
-        item {
-            Column(
-                modifier = Modifier
-                    .clickable {
-                        expanded = !expanded
-                    }
-            ) {
-                Row(
+                Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 10.dp, vertical = 8.dp),
-                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Icon(
-                        imageVector = if (expanded) Icons.Default.KeyboardArrowDown else Icons.Default.KeyboardArrowRight,
-                        contentDescription = "Down Arrow",
-                    )
-                    Spacer(modifier = Modifier.width(5.dp))
-                    TextBodyMediumBlack500(text = "Bayu")
-                    Spacer(modifier = Modifier.weight(1f))
-                    CardTag(
-                        text = HomeStrings.LABEL_DELIVERY,
-                        backgroundColor = SiValetColor.Secondary,
-                        textColorBlack = false,
-                        paddingHorizontal = 10,
-                        paddingVertical = 8
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp, horizontal = 10.dp)
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ico_car_key),
+                            contentDescription = null,
+                            tint = SiValetColor.Black
+                        )
+                        Spacer(modifier = Modifier.width(10.dp))
+                        TextBodyMedium(
+                            text = "${task.vehicle.type} - ${task.vehicle.licensePlate}",
+                            color = SiValetColor.Black
+                        )
+                    }
+                    HorizontalDivider(
+                        color = SiValetColor.Gray
                     )
                 }
 
-                AnimatedVisibility(
+                Column(
                     modifier = Modifier
-                        .padding(0.dp)
-                        .background(SiValetColor.SmoothWhite),
-                    visible = expanded
+                        .fillMaxWidth()
                 ) {
-                    Column(
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 17.dp, vertical = 7.dp)
+                            .padding(vertical = 8.dp, horizontal = 10.dp)
                     ) {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        ) {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp, horizontal = 10.dp)
-                            ) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ico_whatsapp),
-                                    contentDescription = null,
-                                    tint = SiValetColor.Primary
-                                )
-                                Spacer(modifier = Modifier.width(10.dp))
-                                TextBodyMedium(
-                                    text = HomeStrings.LABEL_WHATSAPP,
-                                    color = SiValetColor.Primary
-                                )
-                            }
-                            HorizontalDivider(
-                                color = SiValetColor.Gray
-                            )
-                        }
-
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        ) {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp, horizontal = 10.dp)
-                            ) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ico_car_key),
-                                    contentDescription = null,
-                                    tint = SiValetColor.Black
-                                )
-                                Spacer(modifier = Modifier.width(10.dp))
-                                TextBodyMedium(
-                                    text = "RAIZE - B66AKU",
-                                    color = SiValetColor.Black
-                                )
-                            }
-                            HorizontalDivider(
-                                color = SiValetColor.Gray
-                            )
-                        }
-
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        ) {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp, horizontal = 10.dp)
-                            ) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ico_user),
-                                    contentDescription = null,
-                                    tint = SiValetColor.Black
-                                )
-                                Spacer(modifier = Modifier.width(10.dp))
-                                TextBodyMedium(
-                                    text = "NURITA",
-                                    color = SiValetColor.Black
-                                )
-                            }
-                            HorizontalDivider(
-                                color = SiValetColor.Gray
-                            )
-                        }
+                        Icon(
+                            painter = painterResource(id = R.drawable.ico_user),
+                            contentDescription = null,
+                            tint = SiValetColor.Black
+                        )
+                        Spacer(modifier = Modifier.width(10.dp))
+                        TextBodyMedium(
+                            text = task.customer.name,
+                            color = SiValetColor.Black
+                        )
                     }
+                    HorizontalDivider(
+                        color = SiValetColor.Gray
+                    )
                 }
             }
         }
